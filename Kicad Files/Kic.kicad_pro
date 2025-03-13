@@ -39,7 +39,7 @@
         "pads": {
           "drill": 1.0,
           "height": 2.0,
-          "width": 2.0
+          "width": 2.54
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -644,6 +644,10 @@
     [
       "e63e39d7-6ac0-4ffd-8aa3-1841a4541b55",
       "Root"
+    ],
+    [
+      "b3eeee9f-04f6-4dfd-8e8e-1934e30fabd1",
+      "Amplificateur Transimpédance"
     ]
   ],
   "text_variables": {}
