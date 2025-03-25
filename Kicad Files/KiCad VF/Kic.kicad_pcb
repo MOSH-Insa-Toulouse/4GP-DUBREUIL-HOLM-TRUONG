@@ -4436,14 +4436,26 @@
 		)
 		(embedded_fonts no)
 		(model "U:/Kic/Pantalla OLED 0.96'' 128x64.stp"
+			(hide yes)
 			(offset
-				(xyz 0 -12 2)
+				(xyz 0 -10 -2)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -0 -0 -0)
+			)
+		)
+		(model "/Users/pierrickdubreuil/Documents/INSA/Cours/4ème Année/Semestre printemps/Du capteur au banc de test/Projet/4GP-DUBREUIL-HOLM-TRUONG/Module 3D/OLED/Pantalla OLED 0.96'' 128x64.stp"
+			(offset
+				(xyz 0 -12 11.5)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -0 -0 -0)
 			)
 		)
 	)
