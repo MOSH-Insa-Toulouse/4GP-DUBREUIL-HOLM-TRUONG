@@ -1,6 +1,8 @@
 #include <SoftwareSerial.h>
 #include <Servo.h>
 #include <Adafruit_SSD1306.h>
+#include <SPI.h>
+
 """
 L'objectif de ce code est de programmer l'ensemble des fonctionnalité necessaire au fonctionnement du capteur. 
 Pour cela le code se divise en 2 grandes parties :
