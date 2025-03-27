@@ -23,12 +23,11 @@ Ce répertoire présente l'ensemble des éléments nécessaire à la conception 
 ### Simulation LtSpice
 ### Conception PCB avec KiCad
 #### ***Schematic***
-![Schematic](/Users/pierrickdubreuil/Documents/INSA/Cours/4ème\ Année/Semestre\ printemps/Du\ capteur\ au\ banc\ de\ test/Projet/Capture\ d\'écran/Capture\ d’écran\ 2025-03-27\ à\ 19.19.44.png
-)
+![Schematic](https://github.com/MOSH-Insa-Toulouse/4GP-DUBREUIL-HOLM-TRUONG/issues/6#issue-2954075237)
 
 #### ***PCB Editor***
-![PCB](/Users/pierrickdubreuil/Documents/INSA/Cours/4ème\ Année/Semestre\ printemps/Du\ capteur\ au\ banc\ de\ test/Projet/Capture\ d\'écran/Capture\ d’écran\ 2025-03-27\ à\ 19.19.15.png)
-![PCB_Zoom](/Users/pierrickdubreuil/Documents/INSA/Cours/4ème\ Année/Semestre\ printemps/Du\ capteur\ au\ banc\ de\ test/Projet/Capture\ d\'écran/Capture\ d’écran\ 2025-03-27\ à\ 19.20.13.png)
+![PCB](https://github.com/MOSH-Insa-Toulouse/4GP-DUBREUIL-HOLM-TRUONG/issues/7#issue-2954077340)
+![PCB_Zoom](https://github.com/MOSH-Insa-Toulouse/4GP-DUBREUIL-HOLM-TRUONG/issues/8#issue-2954078855)
 
 ### Codage Arduino
 ### Application Android avec MITApp Inventor
