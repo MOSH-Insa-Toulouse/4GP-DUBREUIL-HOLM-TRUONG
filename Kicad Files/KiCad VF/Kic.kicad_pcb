@@ -8,7 +8,10 @@
 	)
 	(paper "A4")
 	(title_block
+		(title "Empreinte PCB")
 		(date "mar. 31 mars 2015")
+		(rev "1.6")
+		(company "INSA Toulouse (DUBREUIL-HOLM-TRUONG)")
 	)
 	(layers
 		(0 "F.Cu" signal)
