@@ -48,4 +48,4 @@ Le code Arduino doit permettre la réalisation des fonctions suivantes :
 
 [HOLM Anne-Marie](https://github.com/anemho)
 
-[TRUONG Nguyen](https://github.com/ntruonginsatls)
+[TRUONG Nguyen Gia Khanh](https://github.com/ntruonginsatls)
