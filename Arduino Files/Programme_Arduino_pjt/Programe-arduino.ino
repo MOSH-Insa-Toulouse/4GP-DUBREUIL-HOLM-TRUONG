@@ -79,9 +79,9 @@ void setup() {
   digitalWrite(csPin, HIGH);        // Chip select default to de-selected
   SPI.begin();
 
-  // Khởi tạo màn hình OLED
+  //Initialiser l'écran OLED
   if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
-    Serial.println(F("Không tìm thấy OLED!"));
+    Serial.println(F("OLED not found"));
     while (1);
   }
 
