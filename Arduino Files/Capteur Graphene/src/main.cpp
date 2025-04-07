@@ -3,14 +3,21 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include <SoftwareSerial.h>
+
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 #define OLED_RESET    -1
 #define SCREEN_ADDRESS 0x3C  // Adresse I2C de l'écran OLED
+#define txPin 7 // Pin d'écriture du module BT
+#define rxPin 8 // Pin de lecture du module BT
+
 
 // Initialisation de l'écran OLED
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+// Définition du software serial pour le BT
+SoftwareSerial mySerial(rxPin, txPin);
 
 // Broches de connexion de l'encodeur
 #define encoder0PinA  2  // CLK
@@ -71,11 +78,13 @@ void setPotWiper(int addr, int pos) {
 
 void setup() {
   Serial.begin(9600);
-
+  mySerial.begin(9600);
   pinMode(csPin, OUTPUT);           // Configure chip select as output
   pinMode(encoder0PinA, INPUT_PULLUP);
   pinMode(encoder0PinB, INPUT_PULLUP);
   pinMode(ENCODER_SW, INPUT_PULLUP);
+  pinMode(rxPin, INPUT);
+  pinMode(txPin, OUTPUT);
 
   digitalWrite(csPin, HIGH);        // Chip select default to de-selected
   SPI.begin();
@@ -144,5 +153,22 @@ void loop() {
       showMenu();  
       delay(200);
     }
+  }
+
+  // Fonction du module BT
+  int i = 0;
+  char someChar[32]={0};
+  // when characters arrive over the Serial port
+
+  while(Serial.available()){
+    do{
+      someChar[i++] = Serial.read();
+      delay(3);
+    }while(Serial.available()>0);
+    mySerial.println(someChar);
+    Serial.println(someChar);
+  }
+  while(mySerial.available()){
+    Serial.print((char)mySerial.read());
   }
 }
