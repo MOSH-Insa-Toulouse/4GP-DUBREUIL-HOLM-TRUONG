@@ -4,7 +4,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <SoftwareSerial.h>
-
+#include <Servo.h>
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
@@ -18,7 +18,9 @@
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 // Définition du software serial pour le BT
 SoftwareSerial mySerial(rxPin, txPin);
-
+// Initialisation du servo-moteur
+Servo myServo;
+int pos = 0;
 // Broches de connexion de l'encodeur
 #define encoder0PinA  2  // CLK
 #define encoder0PinB  4  // DT
@@ -85,7 +87,7 @@ void setup() {
   pinMode(ENCODER_SW, INPUT_PULLUP);
   pinMode(rxPin, INPUT);
   pinMode(txPin, OUTPUT);
-
+  myServo.attach(12);
   digitalWrite(csPin, HIGH);        // Chip select default to de-selected
   SPI.begin();
 
@@ -170,5 +172,17 @@ void loop() {
   }
   while(mySerial.available()){
     Serial.print((char)mySerial.read());
+  }
+
+  // Fonction pour le Servo-moteur
+
+  for(pos = 0;pos<180; pos+=1){  // Fait varier la position du servo moteur de 0 à 180°
+    myServo.write(pos);
+    delay(15);
+  }
+
+  for(pos =180;pos>=1;pos  -=1){ // Fait varier la position du servo moteur de 180° à 1
+    myServo.write(pos);
+    delay(15);
   }
 }
