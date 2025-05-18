@@ -27,7 +27,9 @@ Ce répertoire présente l'ensemble des éléments nécessaire à la conception 
 ![Image](https://github.com/user-attachments/assets/bb8b725c-3786-4de3-b387-24d299d0f4b6)
 
 ##### Schéma du montage
-![Schem](https://private-user-images.githubusercontent.com/159114395/427711064-7f09b13b-6513-4aae-9651-4c5d3be11e2d.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDMxMDEzNDIsIm5iZiI6MTc0MzEwMTA0MiwicGF0aCI6Ii8xNTkxMTQzOTUvNDI3NzExMDY0LTdmMDliMTNiLTY1MTMtNGFhZS05NjUxLTRjNWQzYmUxMWUyZC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzI3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMyN1QxODQ0MDJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iMWMyMGIxYzE5YjJiNDdlZjhjZGFjOTM0MDFmYTcyMzgzMmQ4ZTE5ZGYzNzU2ZWMzNzRiODFjYjM2ZWVkNGFmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.SNY8-krY5Y3t1eixZfK5xMW18EnUoTkCQSTpguYGR-0)
+
+![Image](https://github.com/user-attachments/assets/6c88a882-49c6-4592-8ece-e05b3ce8b806)
+
 ### Conception PCB avec KiCad
 #### ***Schematic***
 
