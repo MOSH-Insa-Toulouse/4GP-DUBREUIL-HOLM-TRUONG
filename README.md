@@ -21,11 +21,6 @@ Ce répertoire présente l'ensemble des éléments nécessaire à la conception 
 
 ## Livrables
 ### Simulation LtSpice
-
-##### Test of adding picture:
-
-![Image](https://github.com/user-attachments/assets/bb8b725c-3786-4de3-b387-24d299d0f4b6)
-
 ##### Schéma du montage
 
 ![Image](https://github.com/user-attachments/assets/6c88a882-49c6-4592-8ece-e05b3ce8b806)
