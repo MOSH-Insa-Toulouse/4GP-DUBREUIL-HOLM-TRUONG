@@ -23,7 +23,6 @@ Ce répertoire présente l'ensemble des éléments nécessaire à la conception 
 ### Simulation LtSpice
 ##### Schéma du montage
 
-![Image](https://github.com/user-attachments/assets/6c88a882-49c6-4592-8ece-e05b3ce8b806)
 
 ### Conception PCB avec KiCad
 #### ***Schematic***
@@ -34,6 +33,9 @@ Ce répertoire présente l'ensemble des éléments nécessaire à la conception 
 
 ![Image](https://github.com/user-attachments/assets/7d89c180-d199-42cf-8f1e-8d37468880a9)
 
+### ***3D figure***
+
+![Image](https://github.com/user-attachments/assets/6c88a882-49c6-4592-8ece-e05b3ce8b806)
 
 ![PCB_Zoom](https://private-user-images.githubusercontent.com/159114395/427707407-24e7c373-4ed5-4451-ad44-48b8578d2677.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDMxMDExOTAsIm5iZiI6MTc0MzEwMDg5MCwicGF0aCI6Ii8xNTkxMTQzOTUvNDI3NzA3NDA3LTI0ZTdjMzczLTRlZDUtNDQ1MS1hZDQ0LTQ4Yjg1NzhkMjY3Ny5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzI3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMyN1QxODQxMzBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00MmE0NTVmMDFjOTQzY2RjYzUxZWZkZDYyZWIxZTBjZjI1ZjkyNjEwZTQ2OTYwZjNhMWZhY2ZlZDNhZmMzYWE4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.CuN2I4dctzHIWRDvm5KdSwq-A_jlzrphd5sgUXLNqCo)
 
