@@ -21,8 +21,9 @@ Ce répertoire présente l'ensemble des éléments nécessaire à la conception 
 
 ## Livrables
 ### Simulation LtSpice
-##### Schéma du montage
+#### ***Schéma du montage***
 
+![Image](https://github.com/user-attachments/assets/8ec56f1d-8405-40e8-8d74-eb53732aa1f6)
 
 ### Conception PCB avec KiCad
 #### ***Schematic***
