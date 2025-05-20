@@ -18,6 +18,7 @@ bool servoIsMoving = false; // État du mouvement du servo
 unsigned long movestartTime = 0; // Temps de début du mouvement
 const unsigned long moveDuration = 3000; // Durée du mouvement en millisecondes
 int TargetPos = pos; // Position cible du servo
+
 // Broches de connexion de l'encodeur
 #define encoder0PinA  2  // CLK
 #define encoder0PinB  4  // DT
@@ -34,15 +35,23 @@ const byte rWiper          = 125;     // 125 ohms pot wiper resistance
 const byte pot0            = 0x11;    // Pot0 addr
 
 
+//--------------------- Les Menus --------------------------------//
 
-// Liste des éléments du menu
-String menuItems[] = { "Resistance R2", "Servo-moteur" };
+// Liste des éléments du menu principal
+const char* menuItems[] = { "Resistance R2", "Servo-moteur" };
 int menuIndex = 0;            // Index du menu actuel
 
 // Sous-menu pour le servo-moteur
-String menuItemsServo[] = { "Pousser", "Tirer", "Retour" };
+const char* menuItemsServo[] = { "Tirer", "Pousser", "Retour" };
 int menuIndexServo = 0; // Index du sous-menu servo
 bool inSubMenuServo = false; // État du sous-menu servo
+
+const char* menuItemsAngle[] = { "Angle 30°", "Angle 45°", "Angle 60", "Angle 90", "" };
+int menuIndexAngle = 0; // Index du sous-menu angle
+bool inSubMenuAngle = false; // État du sous-menu angle
+bool isPushing = false; // État de la poussée
+
+
 
 // Variables pour l'encodeur
 int encoder0Pos = 0;          // Valeur de l'encodeur
@@ -84,7 +93,7 @@ void showMenu() {
 
   ecranOLED.display();  // Afficher le contenu sur l'écran
 }
-
+// Affichage menu servo-moteur
 void showServoMenu(){
   /**
    * @brief Affiche le sous-menu du servo-moteur sur l'écran OLED.
@@ -105,6 +114,27 @@ for(int i  = 0; i < 3; i++){
 
 }
 // Fonction pour ajuster la valeur du potentiomètre
+// Affichage du menu pour choix de l'angle
+void showAngleMenu(){
+  /**
+   * @brief Affiche le sous-menu de sélection de l'angle sur l'écran OLED
+   * @param None
+   * @return aucun
+   **/
+  ecranOLED.clearDisplay();
+  for(int i = 0; i < 5; i++){
+    if(i == menuIndexAngle){
+      ecranOLED.setTextColor(SSD1306_BLACK, SSD1306_WHITE);
+    }else{
+      ecranOLED.setTextColor(SSD1306_WHITE);
+    }
+    ecranOLED.setCursor(10, 10+(i*10));
+    ecranOLED.println(menuItemsAngle[i]);
+  }
+  ecranOLED.display();
+}
+
+
 void setPotWiper(int addr, int pos) {
   digitalWrite(csPin, LOW);
   SPI.transfer(addr); // Envoyer l'adresse du potentiomètre
@@ -135,18 +165,6 @@ void navigateMenu(int &index, int maxIndex, void(*UpdateDisplay)()) {
     delay(200); 
   }
 
-  if (digitalRead(encoder0PinA) == LOW && digitalRead(encoder0PinB) == HIGH) {
-    index = (index + 1) % maxIndex; // Passer à l'élément suivant du menu
-    UpdateDisplay();   // Mettre à jour l'écran OLED
-    delay(200);  
-  }
-
-  if (digitalRead(encoder0PinA) == HIGH && digitalRead(encoder0PinB) == LOW) {
-    index = (index - 1 + maxIndex) % maxIndex; // Passer à l'élément précédent du menu
-    UpdateDisplay();  // Mettre à jour l'écran OLED
-    delay(200); 
-  }
-
 }
 void afficherAction(String action){
   /**
@@ -159,7 +177,7 @@ void afficherAction(String action){
   ecranOLED.setCursor(10, 10);
   ecranOLED.print("En cours");
   ecranOLED.display();
-  delay(1000);
+  delay(300);
 }
 
 void TriggerServoMovement(int angle){
@@ -189,7 +207,7 @@ void measure(){
   Serial.print("Résistance mesurée: ");
   Serial.print(resistance);
   Serial.println(" ohms");
-  delay(1000); // Attendre avant la prochaine mesure
+  delay(300); // Attendre avant la prochaine mesure
 }
 void setup() {
   Serial.begin(9600);
@@ -221,23 +239,20 @@ void loop() {
   // Vérifier si le bouton est enfoncé
   if (digitalRead(ENCODER_SW) == LOW && !buttonPressed) {
     buttonPressed = true;  // Marquer que le bouton a été enfoncé
-  
-  if (inSubMenuServo){
+
+
+   if (inSubMenuServo){
 
     if(menuIndexServo==0){
-      afficherAction("Pousser");
-    TriggerServoMovement(180); // Déplacer le servo à 180 degrés
-      delay(500);
-      measure(); // Mesurer la résistance
-      delay(500);
-      showServoMenu(); // Afficher le sous-menu du servo-moteur
+       afficherAction("Tirer");
+      TriggerServoMovement(135);
+      delay(300);
+      showServoMenu();
     }else if(menuIndexServo==1){
-     afficherAction("Tirer");
-     TriggerServoMovement(1); // Déplacer le servo à 0 degrés
-     measure(); // Mesurer la résistance
-     delay(500);
-      showServoMenu(); // Afficher le sous-menu du servo-moteur
-     // Afficher le sous-menu du servo-moteur
+      afficherAction("Pousser");
+      TriggerServoMovement(45);
+      delay(300);
+      showServoMenu();
     }else if(menuIndexServo==2){
       inSubMenuServo = false; // Quitter le sous-menu
       showMenu(); // Afficher le menu principal
@@ -255,9 +270,9 @@ void loop() {
     inSubMenuServo = true; // Passer au sous-menu du servo-moteur
     menuIndexServo = 0;
     showServoMenu(); // Afficher le sous-menu du servo-moteur
+  }  // Anti-rebond pour le bouton
   }
-  delay(300);  // Anti-rebond pour le bouton
-  }
+
 
    // Réinitialiser l'état du bouton lorsqu'il est relâché
   if (digitalRead(ENCODER_SW) == HIGH) {
@@ -270,21 +285,18 @@ void loop() {
   if(inSubMenuServo){
     navigateMenu(menuIndexServo, 3, showServoMenu); // Naviguer dans le sous-menu du servo-moteur
   }
-
 // Ajustement de la résistance avec l’encodeur
 if (adjustingResistance && !servoIsMoving) {
   if (digitalRead(encoder0PinA) == LOW && digitalRead(encoder0PinB) == HIGH) {
     encoder0Pos = constrain(encoder0Pos + 1, 0, 255);
     setPotWiper(pot0, encoder0Pos);
     showMenu();  // Afficher la nouvelle valeur sur l'écran
-    delay(200);
   }
 
   if (digitalRead(encoder0PinA) == HIGH && digitalRead(encoder0PinB) == LOW) {
     encoder0Pos = constrain(encoder0Pos - 1, 0, 255);
     setPotWiper(pot0, encoder0Pos);
     showMenu();  // Afficher la nouvelle valeur sur l'écran
-    delay(200);
   }
 }
 if(servoIsMoving){
