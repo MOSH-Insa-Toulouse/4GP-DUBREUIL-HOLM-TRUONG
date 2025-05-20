@@ -245,7 +245,7 @@ void loop() {
 
     if(menuIndexServo==0){
        afficherAction("Tirer");
-      TriggerServoMovement(135);
+      TriggerServoMovement(-45);
       delay(300);
       showServoMenu();
     }else if(menuIndexServo==1){
