@@ -1,6 +1,10 @@
 # 4GP-DUBREUIL-HOLM-TRUONG
 ## Présentation
 Ce répertoire présente l'ensemble des éléments nécessaire à la conception d'un capteur de pression en graphite réalisé dans le cadre de l'UF I4GPMH21 : Du capteur au banc de test en open source hardware.
+L’objectif était de concevoir un dispositif de mesure de déformation utilisant un capteur innovant, low-tech, basé sur du graphite appliqué sur papier, selon le principe décrit dans l’article scientifique :  
+**"Pencil Drawn Strain Gauges and Chemiresistors on Paper"** (Cheng-Wei Lin, Zhibo Zhao, Jaemyung Kim & Jiaxing Huang).
+
+Le fonctionnement repose sur la variation de la conductivité électrique du graphite en fonction de la contrainte mécanique appliquée au support papier. Ce phénomène permet de mesurer la déformation avec une technologie simple, accessible et écologique.
 ## Matériel necessaire
 ### ***Software*** (Présenté dans l'ordre d'utilisation)
 1. LtSpice : Logiciel permettant la modélisation et simulation des circuits électroniques. 
@@ -21,16 +25,26 @@ Ce répertoire présente l'ensemble des éléments nécessaire à la conception 
 
 ## Livrables
 ### Simulation LtSpice
+
+
+Un montage à transimpédance a été conçu afin d'amplifier le faible courant produit par le capteur graphite. Ce montage utilise un amplificateur opérationnel de précision (LTC1050) pour convertir le courant en tension, compatible avec les entrées analogiques d’un Arduino UNO.  
+
+Trois filtres passe-bas ont été intégrés pour minimiser le bruit :
+- Entrée : filtre RC à 16 Hz pour réduire les perturbations en courant,
+- Boucle AOP : filtre actif à 1,6 Hz pour éliminer le bruit secteur (50 Hz),
+- Sortie : filtre à 1,6 kHz pour lisser le signal final.
+
+Des simulations transitoires et fréquentielles ont validé l’amplification et l’efficacité de la filtration (atténuation > 70 dB à 50 Hz).
+
 #### ***Schéma du montage***
-
-- Conception d’un montage à transimpédance pour convertir le courant en tension
-- Simulation avec l’AOP LTC1050
-- Ajout de 3 filtres passe-bas pour atténuation du bruit
-- Résultat : signal amplifié à ~1 V, atténuation du bruit 50 Hz (~72 dB)
-
 ![Image](https://github.com/user-attachments/assets/8ec56f1d-8405-40e8-8d74-eb53732aa1f6)
 
 ### Conception PCB avec KiCad
+
+Le circuit imprimé a été entièrement conçu avec le logiciel **KiCad**, incluant :
+- Schéma électrique complet,
+- Création et affectation des empreintes,
+- Routage double face optimisé sans vias superflus.
 #### ***Schematic***
 
 ![Image](https://github.com/user-attachments/assets/41834f51-993d-49a6-9831-d555f277b064)
@@ -54,7 +68,23 @@ Le code Arduino doit permettre la réalisation des fonctions suivantes :
 1. Contrôler le servo-moteur
 
 ### Application Android avec MITApp Inventor
-###
+
+L’application Android a été conçue via **MIT App Inventor**, offrant :
+- Une interface intuitive,
+- La visualisation en temps réel des valeurs de résistance,
+- Le contrôle du potentiomètre numérique à distance.
+
+L’application utilise une commande spécifique (« read ») pour vider le tampon Bluetooth avant chaque lecture, assurant la fiabilité des données.
+
+### Réalisation Physique du Circuit
+
+Le circuit final a été soudé et testé dans les laboratoires du département. Des tests ont confirmé la stabilité du signal et l’efficacité des différents modules. Les soudures ont été réalisées manuellement pour garantir une bonne qualité de connexion.
+
+### Banc de Test Expérimental
+
+L’objectif est de calculer la variation relative de résistance ($\Delta R / R_0$) en fonction de la déformation ($\varepsilon = e / D$), où $e$ est l’épaisseur du papier et $D$ le diamètre du support.  
+
+
 ## Contacts
 [DUBREUIL Pierrick](https://github.com/pierrickdubreuil17)
 
