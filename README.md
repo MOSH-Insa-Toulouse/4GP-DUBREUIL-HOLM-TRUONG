@@ -82,7 +82,7 @@ Le circuit final a été soudé et testé dans les laboratoires du département.
 
 ### Banc de Test Expérimental
 
-L’objectif est de calculer la variation relative de résistance ($\Delta R / R_0$) en fonction de la déformation ($\varepsilon = e / D$), où $e$ est l’épaisseur du papier et $D$ le diamètre du support.  
+L’objectif est de calculer la variation relative de résistance ($\Delta R / R_0$) en fonction de la déformation ($\varepsilon = e / D$), où $e$ est l’épaisseur du papier et $D$ diamètre du demi-cercle.  
 
 
 ## Contacts
