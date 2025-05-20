@@ -8,7 +8,11 @@
 #define OLED_RESET    -1
 #define SCREEN_ADDRESS 0x3C  // Adresse I2C de l'écran OLED
 
-
+enum MenuState{MAIN_MENU, SERVO_MENU, ANGLE_MENU};
+MenuState currentMenu = MAIN_MENU;
+unsigned long lastEncoderUpdate = 0;
+const int ENCODER_STEP_DELAY = 150; // Délai entre chaque pas de l'encodeur
+int lastEncoderPos = 0;
 
 // Initialisation des différents composants
 Adafruit_SSD1306 ecranOLED(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET); // Initialisation de l'écran OLED
@@ -44,13 +48,12 @@ int menuIndex = 0;            // Index du menu actuel
 // Sous-menu pour le servo-moteur
 const char* menuItemsServo[] = { "Tirer", "Pousser", "Retour" };
 int menuIndexServo = 0; // Index du sous-menu servo
-bool inSubMenuServo = false; // État du sous-menu servo
+
 
 const char* menuItemsAngle[] = { "Angle 30°", "Angle 45°", "Angle 60", "Angle 90", "" };
 int menuIndexAngle = 0; // Index du sous-menu angle
-bool inSubMenuAngle = false; // État du sous-menu angle
-bool isPushing = false; // État de la poussée
 
+int SelectedDirection = 0; // Pousser ou Tirer
 
 
 // Variables pour l'encodeur
@@ -62,36 +65,34 @@ bool buttonPressed = false;   // Variable pour vérifier l'état du bouton
 // Ajout des différentes fonctions 
 
 void showMenu() {
+  static int lastIndex = -1;
+  static bool lastAdjustState = false;
+  
+  if(menuIndex == lastIndex && adjustingResistance == lastAdjustState) return;
 
-  /** 
-   * @brief Affiche le menu principal sur l'écran OLED. Assure aussi l'affichage de la resistance lié à l'encordeur
-   * @param None
-   * @return Aucun
-   **/
-  ecranOLED.clearDisplay();  // Effacer l'écran avant de redessiner
+  ecranOLED.clearDisplay();
 
-  for (int i = 0; i < 2; i++) {
-    if (i == menuIndex) {
-      ecranOLED.setTextColor(SSD1306_BLACK, SSD1306_WHITE);  // Élément sélectionné (inverser les couleurs)
-    } else {
-      ecranOLED.setTextColor(SSD1306_WHITE);
-    }
-
-    ecranOLED.setCursor(10, 10 + (i * 20));
-    ecranOLED.println(menuItems[i]);
-  }
-
- // Afficher la valeur de la résistance si nous sommes en mode de réglage
-  if (adjustingResistance) {
-    ecranOLED.clearDisplay();
-    ecranOLED.setCursor(10, 50);
+  if(adjustingResistance) {
+    // Afficher seulement la résistance
+    ecranOLED.setCursor(10, 10);
     ecranOLED.print("R: ");
     long resistanceWB = ((rAB * encoder0Pos) / maxPositions) + rWiper;
     ecranOLED.print(resistanceWB);
     ecranOLED.println(" ohms");
   }
+  else {
+    // Afficher le menu normal
+    for (int i = 0; i < 2; i++) {
+      ecranOLED.setTextColor(i == menuIndex ? SSD1306_BLACK : SSD1306_WHITE, 
+                            i == menuIndex ? SSD1306_WHITE : SSD1306_BLACK);
+      ecranOLED.setCursor(10, 10 + (i * 20));
+      ecranOLED.println(menuItems[i]);
+    }
+  }
 
-  ecranOLED.display();  // Afficher le contenu sur l'écran
+  ecranOLED.display();
+  lastIndex = menuIndex;
+  lastAdjustState = adjustingResistance;
 }
 // Affichage menu servo-moteur
 void showServoMenu(){
@@ -128,7 +129,7 @@ void showAngleMenu(){
     }else{
       ecranOLED.setTextColor(SSD1306_WHITE);
     }
-    ecranOLED.setCursor(10, 10+(i*10));
+    ecranOLED.setCursor(10, 10+(i*12));
     ecranOLED.println(menuItemsAngle[i]);
   }
   ecranOLED.display();
@@ -140,44 +141,6 @@ void setPotWiper(int addr, int pos) {
   SPI.transfer(addr); // Envoyer l'adresse du potentiomètre
   SPI.transfer(pos);   // Envoyer la valeur du balai
   digitalWrite(csPin, HIGH);
-}
-
-
-void navigateMenu(int &index, int maxIndex, void(*UpdateDisplay)()) {
-
-/** 
- * @brief Gère la navigation dans le menu à l'aide de l'encodeur rotatif.
- * @param index : Référence à l'index du menu actuel
- * @param maxIndex : Nombre maximum d'éléments dans le menu
- * @param UpdateDisplay : Pointeur vers la fonction de mise à jour de l'affichage
- * @return Aucun
- **/
-  // Vérifier la rotation de l'encodeur
-  if (digitalRead(encoder0PinA) == LOW && digitalRead(encoder0PinB) == HIGH) {
-    index = (index + 1) % maxIndex; // Passer à l'élément suivant du menu
-    UpdateDisplay();   // Mettre à jour l'écran OLED
-    delay(200);  
-  }
-
-  if (digitalRead(encoder0PinA) == HIGH && digitalRead(encoder0PinB) == LOW) {
-    index = (index - 1 + maxIndex) % maxIndex; // Passer à l'élément précédent du menu
-    UpdateDisplay();  // Mettre à jour l'écran OLED
-    delay(200); 
-  }
-
-}
-void afficherAction(String action){
-  /**
-   * @brief Affiche une action en cours sur l'écran OLED.
-   * @param action : Action à afficher
-   * @return Aucun
-   **/
-
-  ecranOLED.clearDisplay();
-  ecranOLED.setCursor(10, 10);
-  ecranOLED.print("En cours");
-  ecranOLED.display();
-  delay(300);
 }
 
 void TriggerServoMovement(int angle){
@@ -193,6 +156,115 @@ void TriggerServoMovement(int angle){
     servoIsMoving = true; // Marquer que le servo est en mouvement
   }
 }
+int selectedAngle = 30;
+void executeServoAction(){
+  int angles[] = {30, 45, 60, 90};
+  int baseAngle = angles[menuIndexAngle];
+
+  int targetAngle = (SelectedDirection==0) ? 90-baseAngle : 90+baseAngle;
+  targetAngle = constrain(targetAngle, 0, 180);
+  TriggerServoMovement(targetAngle);
+  if(menuIndexAngle>=4) return;
+}
+
+
+void handleEncoderRotation() {
+  if (millis() - lastEncoderUpdate < ENCODER_STEP_DELAY) return;
+
+  int encoderDelta = 0;
+  int currentStateA = digitalRead(encoder0PinA);
+  int currentStateB = digitalRead(encoder0PinB);
+  
+  static int previousStateA = HIGH;
+  if (previousStateA != currentStateA && currentStateA == LOW) {
+    encoderDelta = (currentStateB == LOW) ? -1 : 1;
+  }
+  previousStateA = currentStateA;
+
+  if (encoderDelta != 0) {
+    lastEncoderUpdate = millis();
+    
+    if (adjustingResistance) {
+      encoder0Pos = constrain(encoder0Pos + encoderDelta, 0, 255);
+      setPotWiper(pot0, encoder0Pos);
+      showMenu();
+    } else {
+      switch(currentMenu) {
+        case MAIN_MENU:
+          menuIndex = constrain(menuIndex + encoderDelta, 0, 1);
+          showMenu();
+          break;
+          
+        case SERVO_MENU:
+          menuIndexServo = constrain(menuIndexServo + encoderDelta, 0, 2);
+          showServoMenu();
+          break;
+          
+        case ANGLE_MENU:
+          menuIndexAngle = constrain(menuIndexAngle + encoderDelta, 0, 4);
+          showAngleMenu();
+          break;
+      }
+    }
+  }
+}
+
+
+void handleMenuSelection() {
+  switch (currentMenu) {
+    case MAIN_MENU:
+      if (menuIndex == 0) {
+        adjustingResistance = !adjustingResistance;
+        if (!adjustingResistance) showMenu(); // Rafraîchir seulement si on sort du mode réglage
+      } else {
+        currentMenu = SERVO_MENU;
+        menuIndexServo = 0; // Réinitialiser la sélection servo
+        showServoMenu();
+      }
+      break;
+
+  case SERVO_MENU:
+    if(menuIndexServo==2){
+      currentMenu =MAIN_MENU;
+      showMenu();
+    }else{
+      SelectedDirection = menuIndexServo;
+      currentMenu = ANGLE_MENU;
+      showAngleMenu();
+    }
+      break;
+    case ANGLE_MENU:
+    if(menuIndexAngle==4){
+      currentMenu = SERVO_MENU;
+      showServoMenu();
+    }else{
+      executeServoAction();
+      currentMenu = ANGLE_MENU;
+      showAngleMenu();
+    }
+    break;
+
+    
+  
+  default:
+    break;
+  }
+}
+void afficherAction(String action){
+  /**
+   * @brief Affiche une action en cours sur l'écran OLED.
+   * @param action : Action à afficher
+   * @return Aucun
+   **/
+
+  ecranOLED.clearDisplay();
+  ecranOLED.setCursor(10, 10);
+  ecranOLED.print("En cours");
+  ecranOLED.display();
+  delay(300);
+}
+
+
 
 void measure(){
   /**
@@ -238,53 +310,18 @@ void setup() {
 void loop() {
   // Vérifier si le bouton est enfoncé
   if (digitalRead(ENCODER_SW) == LOW && !buttonPressed) {
-    buttonPressed = true;  // Marquer que le bouton a été enfoncé
-
-
-   if (inSubMenuServo){
-
-    if(menuIndexServo==0){
-       afficherAction("Tirer");
-      TriggerServoMovement(-45);
-      delay(300);
-      showServoMenu();
-    }else if(menuIndexServo==1){
-      afficherAction("Pousser");
-      TriggerServoMovement(45);
-      delay(300);
-      showServoMenu();
-    }else if(menuIndexServo==2){
-      inSubMenuServo = false; // Quitter le sous-menu
-      showMenu(); // Afficher le menu principal
-    }
-  }else if (menuIndex == 0) {
-    // Activer/désactiver le mode de réglage de la résistance
-    adjustingResistance = !adjustingResistance;
-    if (adjustingResistance) {
-      Serial.println("Réglage de la résistance...");
-    } else {
-      Serial.println("Sortie du mode de réglage de la résistance...");
-    }
-    showMenu();  // Mettre à jour l'écran immédiatement après avoir appuyé sur le bouton
-  } else if(menuIndex==1){
-    inSubMenuServo = true; // Passer au sous-menu du servo-moteur
-    menuIndexServo = 0;
-    showServoMenu(); // Afficher le sous-menu du servo-moteur
-  }  // Anti-rebond pour le bouton
-  }
-
-
+    buttonPressed = true;
+    handleMenuSelection();
+    delay(150);
+    }  // Marquer que le bouton a été enfoncé
+   
    // Réinitialiser l'état du bouton lorsqu'il est relâché
   if (digitalRead(ENCODER_SW) == HIGH) {
     buttonPressed = false;
   }
-
-  if(!adjustingResistance && !inSubMenuServo){
-    navigateMenu(menuIndex, 2, showMenu); // Naviguer dans le menu principal
-  }
-  if(inSubMenuServo){
-    navigateMenu(menuIndexServo, 3, showServoMenu); // Naviguer dans le sous-menu du servo-moteur
-  }
+  //---------- Navigation dans les menus
+ handleEncoderRotation();
+ 
 // Ajustement de la résistance avec l’encodeur
 if (adjustingResistance && !servoIsMoving) {
   if (digitalRead(encoder0PinA) == LOW && digitalRead(encoder0PinB) == HIGH) {
