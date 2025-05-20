@@ -23,6 +23,11 @@ Ce répertoire présente l'ensemble des éléments nécessaire à la conception 
 ### Simulation LtSpice
 #### ***Schéma du montage***
 
+- Conception d’un montage à transimpédance pour convertir le courant en tension
+- Simulation avec l’AOP LTC1050
+- Ajout de 3 filtres passe-bas pour atténuation du bruit
+- Résultat : signal amplifié à ~1 V, atténuation du bruit 50 Hz (~72 dB)
+
 ![Image](https://github.com/user-attachments/assets/8ec56f1d-8405-40e8-8d74-eb53732aa1f6)
 
 ### Conception PCB avec KiCad
