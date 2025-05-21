@@ -36,6 +36,8 @@ Trois filtres passe-bas ont été intégrés pour minimiser le bruit :
 
 Des simulations transitoires et fréquentielles ont validé l’amplification et l’efficacité de la filtration (atténuation > 70 dB à 50 Hz).
 
+#### ***Graphe***
+
 ![Image](https://github.com/user-attachments/assets/1576e794-9247-45f7-ab48-5f0affea7e4b)
 
 #### ***Schéma du montage***
