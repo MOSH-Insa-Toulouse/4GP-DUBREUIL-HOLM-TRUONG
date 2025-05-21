@@ -86,8 +86,16 @@ Le circuit final a été soudé et testé dans les laboratoires du département.
 
 ### Banc de Test Expérimental
 
-L’objectif est de calculer la variation relative de résistance ($\Delta R / R_0$) en fonction de la déformation ($\varepsilon = e / D$), où $e$ est l’épaisseur du papier et $D$ diamètre du demi-cercle.  
+L’objectif est de calculer la variation relative de résistance ($\Delta R / R_0$) en fonction de la déformation ($\varepsilon = e / D$), où $e$ est l’épaisseur du papier et $D$ diamètre du demi-cercle.
 
+## Formule de calcul du déplacement Δx du curseur
+\[
+\Delta x = L \cos(\alpha) + l \left( \sqrt{1 - \frac{L^2 \sin^2(\alpha)}{l^2}} - \sqrt{1 - \frac{L^2}{l^2}} \right)
+\]
+## ## Formule de calcul du rayon R0 du capteur lorsqu'il est plié à l'angle de rotation alpha
+\[
+R_0(\alpha) = \frac{l_0^2 + \left[ L \cos(\alpha) + l \left( \sqrt{1 - \frac{L^2 \sin^2(\alpha)}{l^2}} - \sqrt{1 - \frac{L^2}{l^2}} \right) \right]^2}{4 \left[ L \cos(\alpha) + l \left( \sqrt{1 - \frac{L^2 \sin^2(\alpha)}{l^2}} - \sqrt{1 - \frac{L^2}{l^2}} \right) \right]}
+\]
 
 ## Contacts
 [DUBREUIL Pierrick](https://github.com/pierrickdubreuil17)
