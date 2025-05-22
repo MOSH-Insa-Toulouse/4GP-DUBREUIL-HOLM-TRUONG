@@ -7,12 +7,23 @@
 #define SCREEN_HEIGHT 64
 #define OLED_RESET    -1
 #define SCREEN_ADDRESS 0x3C  // Adresse I2C de l'écran OLED
+#define MAX_MESURE 10
 
 enum MenuState{MAIN_MENU, SERVO_MENU, ANGLE_MENU};
 MenuState currentMenu = MAIN_MENU;
 unsigned long lastEncoderUpdate = 0;
 const int ENCODER_STEP_DELAY = 150; // Délai entre chaque pas de l'encodeur
 int lastEncoderPos = 0;
+
+struct mesure{
+  int angle;
+  int valBrute;
+  float resistance;
+};
+
+mesure mesures[MAX_MESURE];
+int currentMesure = 0;
+bool finMesure = false;
 
 // Initialisation des différents composants
 Adafruit_SSD1306 ecranOLED(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET); // Initialisation de l'écran OLED
@@ -50,7 +61,7 @@ const char* menuItemsServo[] = { "Tirer", "Pousser", "Retour" };
 int menuIndexServo = 0; // Index du sous-menu servo
 
 
-const char* menuItemsAngle[] = { "Angle 30°", "Angle 45°", "Angle 60", "Angle 90", "" };
+const char* menuItemsAngle[] = { "Angle 30°", "Angle 45°", "Angle 60", "Angle 90", "Retour" };
 int menuIndexAngle = 0; // Index du sous-menu angle
 
 int SelectedDirection = 0; // Pousser ou Tirer
@@ -135,7 +146,6 @@ void showAngleMenu(){
   ecranOLED.display();
 }
 
-
 void setPotWiper(int addr, int pos) {
   digitalWrite(csPin, LOW);
   SPI.transfer(addr); // Envoyer l'adresse du potentiomètre
@@ -143,27 +153,55 @@ void setPotWiper(int addr, int pos) {
   digitalWrite(csPin, HIGH);
 }
 
-void TriggerServoMovement(int angle){
-  /**
-   * @brief Déclenche le mouvement du servo-moteur vers un angle cible.
-   * @param angle : Angle cible pour le servo-moteur
-   * @return Aucun
-   */
-  if(!servoIsMoving){
-    TargetPos = angle; // Mettre à jour la position cible
-    myservo.write(TargetPos); // Déplacer le servo vers la position cible
-    movestartTime = millis(); // Enregistrer le temps de début du mouvement
-    servoIsMoving = true; // Marquer que le servo est en mouvement
-  }
-}
+
+
 int selectedAngle = 30;
+
 void executeServoAction(){
   int angles[] = {30, 45, 60, 90};
   int baseAngle = angles[menuIndexAngle];
 
   int targetAngle = (SelectedDirection==0) ? 90-baseAngle : 90+baseAngle;
   targetAngle = constrain(targetAngle, 0, 180);
-  TriggerServoMovement(targetAngle);
+  myservo.write(targetAngle);
+ delay(1000);
+  // Mesure 1 s
+
+  unsigned long debutMesure = millis();
+  int samples = 0;
+  long sumRaw = 0;
+
+  while(millis()-debutMesure<1000){
+    int raw = analogRead(GraphenePin);
+    sumRaw +=raw;
+    samples++;
+    delay(10);
+  }
+
+  // Sauvegarde résultats
+
+  mesures[currentMesure].angle = baseAngle;
+  mesures[currentMesure].valBrute = sumRaw/samples;
+  mesures[currentMesure].resistance = ((5.0*rAB)/(1023.0/(sumRaw/samples)))-rAB;
+
+  // Envoie des données au format csv
+  Serial.print("Angle :");
+  Serial.print(baseAngle);
+  Serial.print(", Direction : ");
+  Serial.print(SelectedDirection==0 ? "Tirer" : "Pousser");
+  Serial.print(", Valeur brute :");
+  Serial.print(mesures[currentMesure].valBrute);
+  Serial.print(", Resistance :");
+  Serial.println(mesures[currentMesure].resistance);
+
+  currentMesure = (currentMesure+1)%MAX_MESURE;
+
+  // Retour position initiale
+
+  myservo.write(90);
+  servoIsMoving = true;
+  movestartTime = millis();
+  delay(500);  
   if(menuIndexAngle>=4) return;
 }
 
@@ -281,6 +319,24 @@ void measure(){
   Serial.println(" ohms");
   delay(300); // Attendre avant la prochaine mesure
 }
+
+void testCapteurGraphite() {
+  // 1. Lire la valeur analogique brute
+  int valeurBrute = analogRead(GraphenePin);
+  
+  // 2. Calculer la tension (pour info)
+  float tension = valeurBrute * (5.0 / 1023.0);
+  
+  // 3. Afficher les résultats
+  Serial.print("Valeur brute: ");
+  Serial.print(valeurBrute);
+  Serial.print(" | Tension: ");
+  Serial.print(tension);
+  Serial.println("V");
+  
+  // Petit délai pour lisibilité
+  delay(500);
+}
 void setup() {
   Serial.begin(9600);
 
@@ -336,13 +392,6 @@ if (adjustingResistance && !servoIsMoving) {
     showMenu();  // Afficher la nouvelle valeur sur l'écran
   }
 }
-if(servoIsMoving){
-  if(millis()-movestartTime >= moveDuration){
-    myservo.write(pos); // Ramener le servo à la position initiale
-    servoIsMoving = false; // Arrêter le mouvement du servo
-   }
-}
-
 }
 
 
