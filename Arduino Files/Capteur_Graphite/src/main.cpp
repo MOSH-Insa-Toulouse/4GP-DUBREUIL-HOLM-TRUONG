@@ -263,7 +263,7 @@ void handleMenuSelection() {
 
   case SERVO_MENU:
     if(menuIndexServo==2){
-      currentMenu =MAIN_MENU;
+      currentMenu = MAIN_MENU;
       showMenu();
     }else{
       SelectedDirection = menuIndexServo;
