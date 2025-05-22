@@ -36,6 +36,10 @@ Trois filtres passe-bas ont été intégrés pour minimiser le bruit :
 
 Des simulations transitoires et fréquentielles ont validé l’amplification et l’efficacité de la filtration (atténuation > 70 dB à 50 Hz).
 
+#### ***Graphe***
+
+![Image](https://github.com/user-attachments/assets/1576e794-9247-45f7-ab48-5f0affea7e4b)
+
 #### ***Schéma du montage***
 ![Image](https://github.com/user-attachments/assets/8ec56f1d-8405-40e8-8d74-eb53732aa1f6)
 
@@ -82,8 +86,16 @@ Le circuit final a été soudé et testé dans les laboratoires du département.
 
 ### Banc de Test Expérimental
 
-L’objectif est de calculer la variation relative de résistance ($\Delta R / R_0$) en fonction de la déformation ($\varepsilon = e / D$), où $e$ est l’épaisseur du papier et $D$ diamètre du demi-cercle.  
+L’objectif est de calculer la variation relative de résistance ($\Delta R / R_0$) en fonction de la déformation ($\varepsilon = e / D$), où $e$ est l’épaisseur du papier et $D$ diamètre du demi-cercle.
 
+## Formule de calcul du déplacement Δx du curseur
+\[
+\Delta x = L \cos(\alpha) + l \left( \sqrt{1 - \frac{L^2 \sin^2(\alpha)}{l^2}} - \sqrt{1 - \frac{L^2}{l^2}} \right)
+\]
+## ## Formule de calcul du rayon R0 du capteur lorsqu'il est plié à l'angle de rotation alpha
+\[
+R_0(\alpha) = \frac{l_0^2 + \left[ L \cos(\alpha) + l \left( \sqrt{1 - \frac{L^2 \sin^2(\alpha)}{l^2}} - \sqrt{1 - \frac{L^2}{l^2}} \right) \right]^2}{4 \left[ L \cos(\alpha) + l \left( \sqrt{1 - \frac{L^2 \sin^2(\alpha)}{l^2}} - \sqrt{1 - \frac{L^2}{l^2}} \right) \right]}
+\]
 
 ## Contacts
 [DUBREUIL Pierrick](https://github.com/pierrickdubreuil17)
