@@ -1,10 +1,10 @@
 # 4GP-DUBREUIL-HOLM-TRUONG
 
-##SMOMAIRE
+## SMOMAIRE
 - [Présentation](#Présentation)
 - [Matériel necessaire](#Matériel-necessaire)
-   - [Software]
-   - [Hardware]
+   - [Software](#Software)
+   - [Hardware](#Hardware)
 - [Livrables](#Livrables)
    - [Simulation LtSpice](#Simulation-LtSpice)
    - [Code Arduino](#Code-Arduino)
@@ -15,8 +15,10 @@
 ## Présentation
 Ce répertoire présente l'ensemble des éléments nécessaire à la conception d'un capteur de pression en graphite réalisé dans le cadre de l'UF I4GPMH21 : Du capteur au banc de test en open source hardware.
 L’objectif était de concevoir un dispositif de mesure de déformation utilisant un capteur innovant, low-tech, basé sur du graphite appliqué sur papier, selon le principe décrit dans l’article scientifique :  
-**"Pencil Drawn Strain Gauges and Chemiresistors on Paper"** (Cheng-Wei Lin, Zhibo Zhao, Jaemyung Kim & Jiaxing Huang).
+**"Pencil Drawn Strain Gauges and Chemiresistors on Paper"** (Cheng-Wei Lin, Zhibo Zhao, Jaemyung Kim & Jiaxing Huang). Ce capteur, d'une simplicité remarquable, est constitué d'un morceau de papier sur lequel du graphite est appliqué à l'aide d'un crayon à papier.
 
+Le principe de fonctionnement repose sur l'observation que la déformation du papier entraîne une variation du nombre de particules de graphite interconnectées. Cette modification de la structure granulaire du graphite se traduit par une variation de la résistance et de la conductance du capteur. En exploitant cette propriété, il devient possible de remonter à la déformation subie, à l'instar d'une jauge de contrainte classique.
+![Image](https://github.com/user-attachments/assets/bc79245b-acaf-44ab-830e-e222ee2b5f1d)
 Le fonctionnement repose sur la variation de la conductivité électrique du graphite en fonction de la contrainte mécanique appliquée au support papier. Ce phénomène permet de mesurer la déformation avec une technologie simple, accessible et écologique.
 ## Matériel necessaire
 ### ***Software*** (Présenté dans l'ordre d'utilisation)
