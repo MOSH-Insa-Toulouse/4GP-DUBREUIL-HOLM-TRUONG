@@ -80,7 +80,6 @@ Le circuit imprimé a été entièrement conçu avec le logiciel **KiCad**, incl
 
 ![Image](https://github.com/user-attachments/assets/48660987-a96b-4d5e-b8db-5d6eb2de74c5)
 
-![PCB_Zoom](https://private-user-images.githubusercontent.com/159114395/427707407-24e7c373-4ed5-4451-ad44-48b8578d2677.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDMxMDExOTAsIm5iZiI6MTc0MzEwMDg5MCwicGF0aCI6Ii8xNTkxMTQzOTUvNDI3NzA3NDA3LTI0ZTdjMzczLTRlZDUtNDQ1MS1hZDQ0LTQ4Yjg1NzhkMjY3Ny5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzI3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMyN1QxODQxMzBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00MmE0NTVmMDFjOTQzY2RjYzUxZWZkZDYyZWIxZTBjZjI1ZjkyNjEwZTQ2OTYwZjNhMWZhY2ZlZDNhZmMzYWE4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.CuN2I4dctzHIWRDvm5KdSwq-A_jlzrphd5sgUXLNqCo)
 
 ### Code Arduino
 Le code Arduino doit permettre la réalisation des fonctions suivantes :
@@ -107,18 +106,9 @@ Le circuit final a été soudé et testé dans les laboratoires du département.
 
 L’objectif est de calculer la variation relative de résistance ($\Delta R / R_0$) en fonction de la déformation ($\varepsilon = e / D$), où $e$ est l’épaisseur du papier et $D$ diamètre du demi-cercle.
 
-#### Formule de calcul du déplacement Δx du curseur
-\[
-\Delta x = L \cos(\alpha) + l \left( \sqrt{1 - \frac{L^2 \sin^2(\alpha)}{l^2}} - \sqrt{1 - \frac{L^2}{l^2}} \right)
-\]
-#### Formule de calcul du rayon R0 du capteur lorsqu'il est plié à l'angle de rotation alpha
-\[
-R_0(\alpha) = \frac{l_0^2 + \left[ L \cos(\alpha) + l \left( \sqrt{1 - \frac{L^2 \sin^2(\alpha)}{l^2}} - \sqrt{1 - \frac{L^2}{l^2}} \right) \right]^2}{4 \left[ L \cos(\alpha) + l \left( \sqrt{1 - \frac{L^2 \sin^2(\alpha)}{l^2}} - \sqrt{1 - \frac{L^2}{l^2}} \right) \right]}
-\]
-
 ## Contacts
 [DUBREUIL Pierrick](https://github.com/pierrickdubreuil17)
 
 [HOLM Anne-Marie](https://github.com/anemho)
 
-[TRUONG Nguyen Gia Khanh](https://github.com/ntruonginsatls)
+[TRUONG Nguyen Gia Khanh](https://github.com/ntruonginsatls)(ntruong@insa-toulouse.fr)
