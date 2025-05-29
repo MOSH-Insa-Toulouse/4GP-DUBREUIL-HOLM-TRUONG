@@ -104,7 +104,7 @@ L’objectif est d’optimiser la compacité, de limiter les interférences et d
 
 ![Image](https://github.com/user-attachments/assets/7d89c180-d199-42cf-8f1e-8d37468880a9)
 
-![Image](https://github.com/user-attachments/assets/c64fc3c3-8669-43f4-a2bb-5f7fb6242ba6)
+
 ---
 
 ### Étape 4 : Visualisation 3D
@@ -164,6 +164,8 @@ Voici une image représentant les blocs utilisés dans le projet :
 ### 5) Réalisation Physique du Circuit
 
 Le circuit final a été soudé et testé dans les laboratoires du département. Des tests ont confirmé la stabilité du signal et l’efficacité des différents modules. Les soudures ont été réalisées manuellement pour garantir une bonne qualité de connexion.
+
+![Image](https://github.com/user-attachments/assets/c64fc3c3-8669-43f4-a2bb-5f7fb6242ba6)
 
 ![Image](https://github.com/user-attachments/assets/fd61f70b-806f-4120-856d-6a93f04570aa)
 
