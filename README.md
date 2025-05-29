@@ -1,16 +1,16 @@
 # 4GP-DUBREUIL-HOLM-TRUONG
 
 ## SMOMAIRE
-- [Présentation](#Présentation)
-- [Matériel necessaire](#Matériel-necessaire)
+- [I) Présentation](#Présentation)
+- [II) Matériel necessaire](#Matériel-necessaire)
    - [Software](#Software)
    - [Hardware](#Hardware)
-- [Livrables](#Livrables)
-   - [Simulation LtSpice](#Simulation-LtSpice)
-   - [Code Arduino](#Code-Arduino)
-   - [Application Android avec MITApp Inventor](#Application-Android-avec-MITApp-Inventor)
-   - [Réalisation Physique du Circuit](#Réalisation-Physique-du-Circuit)
-   - [Banc de Test Expérimental](#Banc-de-Test-Expérimental)
+- [III)Livrables](#Livrables)
+   - [1) Simulation LtSpice](#Simulation-LtSpice)
+   - [2) Code Arduino](#Code-Arduino)
+   - [3) Application Android avec MITApp Inventor](#Application-Android-avec-MITApp-Inventor)
+   - [4) Réalisation Physique du Circuit](#Réalisation-Physique-du-Circuit)
+   - [5) Banc de Test Expérimental](#Banc-de-Test-Expérimental)
 
 ## Présentation
 Ce répertoire présente l'ensemble des éléments nécessaire à la conception d'un capteur de pression en graphite réalisé dans le cadre de l'UF I4GPMH21 : Du capteur au banc de test en open source hardware.
