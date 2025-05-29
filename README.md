@@ -46,7 +46,6 @@ Le fonctionnement repose sur la variation de la conductivité électrique du gra
 ## III) Livrables
 ### 1) Simulation LtSpice
 
-
 Un montage à transimpédance a été conçu afin d'amplifier le faible courant produit par le capteur graphite. Ce montage utilise un amplificateur opérationnel de précision (LTC1050) pour convertir le courant en tension, compatible avec les entrées analogiques d’un Arduino UNO.  
 
 Trois filtres passe-bas ont été intégrés pour minimiser le bruit :
@@ -65,19 +64,55 @@ Des simulations transitoires et fréquentielles ont validé l’amplification et
 
 ### 2) Conception PCB avec KiCad
 
-Le circuit imprimé a été entièrement conçu à l'aide du logiciel **KiCad**, incluant :
-- Schéma électrique complet,
-- Création et affectation des empreintes,
-- Routage double face optimisé sans vias superflus.
+Dans cette section, nous présentons le processus de conception du circuit imprimé du projet, allant de la simulation électrique à la modélisation 3D, en passant par le routage des composants. L’objectif est de réaliser une carte fonctionnelle permettant l’acquisition, le traitement et la transmission du signal mesuré par le capteur graphite.
+
+
+### Étape 1 : Sélection et intégration des composants
+
+Le circuit est conçu pour intégrer et connecter plusieurs composants essentiels à l’Arduino :
+
+- Amplificateur opérationnel **LT1050** (amplification analogique du signal capteur)
+- **Servomoteur** 
+- **Potentiomètre numérique** (ajustement dynamique de gain ou tension de référence)
+- **Encodeur rotatif**
+- **Écran OLED**
+- **Module Bluetooth HC-05** (communication sans fil avec une application mobile)
+- Deux broches dédiées au **capteur graphique**
+
+L’ensemble des connexions logiques et électriques est établi dans le schéma pour s'assurer de la compatibilité avec l’Arduino.
+
+---
+
+### Étape 2 : Simulation du schéma électrique
+
+La conception a débuté par la création d’un schéma électrique simulé sous **LTspice**. Cette simulation permet de valider le comportement du circuit d’amplification, notamment autour de l’amplificateur opérationnel **LT1050**, qui joue un rôle essentiel dans l’amplification du signal analogique issu du capteur graphite.
+
+Une fois le schéma validé, il est reproduit dans **KiCad** afin de préparer la conception physique du circuit.
+
 #### ***Schematic***
 
 ![Image](https://github.com/user-attachments/assets/41834f51-993d-49a6-9831-d555f277b064)
 
-#### ***PCB Editor***
+---
+
+
+### Étape 3 : Routage PCB dans KiCad
+
+La phase suivante consiste à réaliser le **routage** du circuit. Cela implique de placer les composants sur le PCB, de définir les couches, les largeurs de piste et les zones de masse, puis de relier chaque broche selon le schéma précédent.
+
+L’objectif est d’optimiser la compacité, de limiter les interférences et d’assurer la robustesse du signal analogique.
+
+**Aperçu du PCB routé :**
 
 ![Image](https://github.com/user-attachments/assets/7d89c180-d199-42cf-8f1e-8d37468880a9)
 
-### ***3D figure***
+---
+
+### Étape 4 : Visualisation 3D
+
+Une fois le routage terminé, **KiCad** permet de générer un **modèle 3D** réaliste de la carte. Cette vue permet de vérifier l’encombrement, l’orientation des composants, et de prévoir les contraintes mécaniques ou d’intégration dans un boîtier physique.
+
+**Modélisation 3D du PCB :**
 
 ![Image](https://github.com/user-attachments/assets/48660987-a96b-4d5e-b8db-5d6eb2de74c5)
 
