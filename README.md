@@ -81,7 +81,6 @@ Le circuit est conçu pour intégrer et connecter plusieurs composants essentiel
 
 L’ensemble des connexions logiques et électriques est établi dans le schéma pour s'assurer de la compatibilité avec l’Arduino.
 
----
 
 ### Étape 2 : Simulation du schéma électrique
 
@@ -93,7 +92,6 @@ Une fois le schéma validé, il est reproduit dans **KiCad** afin de préparer l
 
 ![Image](https://github.com/user-attachments/assets/41834f51-993d-49a6-9831-d555f277b064)
 
----
 
 
 ### Étape 3 : Routage PCB dans KiCad
@@ -116,7 +114,7 @@ Une fois le routage terminé, **KiCad** permet de générer un **modèle 3D** r�
 
 ![Image](https://github.com/user-attachments/assets/48660987-a96b-4d5e-b8db-5d6eb2de74c5)
 
-
+---
 ### 3) Code Arduino
 Le code Arduino doit permettre la réalisation des fonctions suivantes :
 1. Récupérer les données du capteur *Hand-made*
@@ -125,6 +123,7 @@ Le code Arduino doit permettre la réalisation des fonctions suivantes :
 1. Gérer l'affichage OLED
 1. Contrôler le servo-moteur
 
+---
 ### 4) Application Android avec MITApp Inventor
 
 Dans le cadre du banc de test du projet **capteur graphique**, nous avons développé une application Android avec **MIT App Inventor**. Cette application permet la communication sans fil avec un module **Arduino** via Bluetooth, afin de visualiser les données du capteur en temps réel.
@@ -160,10 +159,12 @@ Voici une image représentant les blocs utilisés dans le projet :
 
 ![Image](https://github.com/user-attachments/assets/ed322dd1-6f0d-4da5-89ca-ad9bb435ec90)
 
+---
 ### 5) Réalisation Physique du Circuit
 
 Le circuit final a été soudé et testé dans les laboratoires du département. Des tests ont confirmé la stabilité du signal et l’efficacité des différents modules. Les soudures ont été réalisées manuellement pour garantir une bonne qualité de connexion.
 
+---
 ### 6) Banc de Test Expérimental
 
 Le banc de test qui nous a permis de réaliser l'expérience a été developpé avec le logiciel **Fusion 360**. 
@@ -178,6 +179,8 @@ Il est composé de :
 L'ensemble de ces pièces sont à retrouver dans le dossier "Banc de test".
 L'idée de ce banc de test est de couber le papier à l'aide du mobile qui sera actionner par le servo-moteur. Pour avoir un ensemble de mesure à réaliser le micro-contrôleur gère l'angle de la course imposé au moteur. Ainsi, on peut raisonnablement pensé que pour un même angle de course appliqué, le papier subira toujours la même déformation. 
 Les courbes de mesure à établir seront donc la varoiation de résistance suivant la course faite par le mobile
+
+---
 ## Contacts
 [DUBREUIL Pierrick](https://github.com/pierrickdubreuil17)
 
