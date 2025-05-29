@@ -18,7 +18,7 @@ int lastEncoderPos = 0;
 struct mesure{
   int angle;
   int valBrute;
-  float resistance;
+  float tension;
 };
 
 mesure mesures[MAX_MESURE];
@@ -45,7 +45,7 @@ int TargetPos = pos; // Position cible du servo
 // Broches du MCP42100
 const byte csPin           = 10;      // MCP42100 chip select pin
 const int  maxPositions    = 256;     // Wiper can move from 0 to 255 = 256 positions
-const long rAB             = 92500;   // 100k pot resistance between terminals A and B
+const long rAB             = 10000;   // 100k pot resistance between terminals A and B
 const byte rWiper          = 125;     // 125 ohms pot wiper resistance
 const byte pot0            = 0x11;    // Pot0 addr
 
@@ -57,7 +57,7 @@ const char* menuItems[] = { "Resistance R2", "Servo-moteur" };
 int menuIndex = 0;            // Index du menu actuel
 
 // Sous-menu pour le servo-moteur
-const char* menuItemsServo[] = { "Tirer", "Pousser", "Retour" };
+const char* menuItemsServo[] = { "Pousser", "Tirer", "Retour" };
 int menuIndexServo = 0; // Index du sous-menu servo
 
 
@@ -170,29 +170,30 @@ void executeServoAction(){
   unsigned long debutMesure = millis();
   int samples = 0;
   long sumRaw = 0;
-
+  int raw = analogRead(GraphenePin);
   while(millis()-debutMesure<1000){
-    int raw = analogRead(GraphenePin);
+    
     sumRaw +=raw;
     samples++;
-    delay(10);
+    delay(300);
   }
 
   // Sauvegarde résultats
 
   mesures[currentMesure].angle = baseAngle;
   mesures[currentMesure].valBrute = sumRaw/samples;
-  mesures[currentMesure].resistance = ((5.0*rAB)/(1023.0/(sumRaw/samples)))-rAB;
+  mesures[currentMesure].tension = raw * (5.0/1023.0); // Conversion en volts
+
 
   // Envoie des données au format csv
   Serial.print("Angle :");
   Serial.print(baseAngle);
   Serial.print(", Direction : ");
-  Serial.print(SelectedDirection==0 ? "Tirer" : "Pousser");
+  Serial.print(SelectedDirection==0 ? "Pousser" : "Tirer");
   Serial.print(", Valeur brute :");
   Serial.print(mesures[currentMesure].valBrute);
-  Serial.print(", Resistance :");
-  Serial.println(mesures[currentMesure].resistance);
+  Serial.print(", Tension de Sortie :");
+  Serial.println(mesures[currentMesure].tension);
 
   currentMesure = (currentMesure+1)%MAX_MESURE;
 
@@ -364,6 +365,8 @@ void setup() {
 }
 
 void loop() {
+
+  setPotWiper(pot0,5);
   // Vérifier si le bouton est enfoncé
   if (digitalRead(ENCODER_SW) == LOW && !buttonPressed) {
     buttonPressed = true;

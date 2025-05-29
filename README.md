@@ -55,7 +55,7 @@ Trois filtres passe-bas ont été intégrés pour minimiser le bruit :
 
 Des simulations transitoires et fréquentielles ont validé l’amplification et l’efficacité de la filtration (atténuation > 70 dB à 50 Hz).
 
-#### ***Graphe***
+#### ***Graphique***
 
 ![Image](https://github.com/user-attachments/assets/1576e794-9247-45f7-ab48-5f0affea7e4b)
 
@@ -64,7 +64,7 @@ Des simulations transitoires et fréquentielles ont validé l’amplification et
 
 ### Conception PCB avec KiCad
 
-Le circuit imprimé a été entièrement conçu avec le logiciel **KiCad**, incluant :
+Le circuit imprimé a été entièrement conçu à l'aide du logiciel **KiCad**, incluant :
 - Schéma électrique complet,
 - Création et affectation des empreintes,
 - Routage double face optimisé sans vias superflus.
@@ -104,8 +104,18 @@ Le circuit final a été soudé et testé dans les laboratoires du département.
 
 ### Banc de Test Expérimental
 
-L’objectif est de calculer la variation relative de résistance ($\Delta R / R_0$) en fonction de la déformation ($\varepsilon = e / D$), où $e$ est l’épaisseur du papier et $D$ diamètre du demi-cercle.
+Le banc de test qui nous a permis de réaliser l'expérience a été developpé avec le logiciel **Fusion 360**. 
+Il est composé de :
+1. Un support pour le micro-contrôleur Arduino
+1. Un support pour le servo moteur
+1. Un bras pour lié le servo-moteur au mobile
+1. Un rail 
+1. Un mobile 
+1. Un support pour le capteur graphène.
 
+L'ensemble de ces pièces sont à retrouver dans le dossier "Banc de test".
+L'idée de ce banc de test est de couber le papier à l'aide du mobile qui sera actionner par le servo-moteur. Pour avoir un ensemble de mesure à réaliser le micro-contrôleur gère l'angle de la course imposé au moteur. Ainsi, on peut raisonnablement pensé que pour un même angle de course appliqué, le papier subira toujours la même déformation. 
+Les courbes de mesure à établir seront donc la varoiation de résistance suivant la course faite par le mobile
 ## Contacts
 [DUBREUIL Pierrick](https://github.com/pierrickdubreuil17)
 
