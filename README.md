@@ -12,7 +12,7 @@
    - [4) Réalisation Physique du Circuit](#Réalisation-Physique-du-Circuit)
    - [5) Banc de Test Expérimental](#Banc-de-Test-Expérimental)
 
-## Présentation
+## I) Présentation
 Ce répertoire présente l'ensemble des éléments nécessaire à la conception d'un capteur de pression en graphite réalisé dans le cadre de l'UF I4GPMH21 : Du capteur au banc de test en open source hardware.
 L’objectif était de concevoir un dispositif de mesure de déformation utilisant un capteur innovant, low-tech, basé sur du graphite appliqué sur papier, selon le principe décrit dans l’article scientifique :  
 **"Pencil Drawn Strain Gauges and Chemiresistors on Paper"** (Cheng-Wei Lin, Zhibo Zhao, Jaemyung Kim & Jiaxing Huang). Ce capteur, d'une simplicité remarquable, est constitué d'un morceau de papier sur lequel du graphite est appliqué à l'aide d'un crayon à papier.
@@ -24,7 +24,7 @@ Le principe de fonctionnement repose sur l'observation que la déformation du pa
 ![Image](https://github.com/user-attachments/assets/bc79245b-acaf-44ab-830e-e222ee2b5f1d)
 
 Le fonctionnement repose sur la variation de la conductivité électrique du graphite en fonction de la contrainte mécanique appliquée au support papier. Ce phénomène permet de mesurer la déformation avec une technologie simple, accessible et écologique.
-## Matériel necessaire
+## II) Matériel necessaire
 ### ***Software*** (Présenté dans l'ordre d'utilisation)
 1. LtSpice : Logiciel permettant la modélisation et simulation des circuits électroniques. 
 1. KiCad : Logiciel permettant le développement et conception du PCB (*Printed Board Circuit*)
@@ -42,8 +42,8 @@ Le fonctionnement repose sur la variation de la conductivité électrique du gra
     * Servo-Moteur
 1. Banc de test
 
-## Livrables
-### Simulation LtSpice
+## III) Livrables
+### 1) Simulation LtSpice
 
 
 Un montage à transimpédance a été conçu afin d'amplifier le faible courant produit par le capteur graphite. Ce montage utilise un amplificateur opérationnel de précision (LTC1050) pour convertir le courant en tension, compatible avec les entrées analogiques d’un Arduino UNO.  
@@ -81,7 +81,7 @@ Le circuit imprimé a été entièrement conçu à l'aide du logiciel **KiCad**,
 ![Image](https://github.com/user-attachments/assets/48660987-a96b-4d5e-b8db-5d6eb2de74c5)
 
 
-### Code Arduino
+### 2) Code Arduino
 Le code Arduino doit permettre la réalisation des fonctions suivantes :
 1. Récupérer les données du capteur *Hand-made*
 1. Récupérer les données du capteur commercial
@@ -89,17 +89,17 @@ Le code Arduino doit permettre la réalisation des fonctions suivantes :
 1. Gérer l'affichage OLED
 1. Contrôler le servo-moteur
 
-### Application Android avec MITApp Inventor
+### 3) Application Android avec MITApp Inventor
 
 Dans le cadre du banc de test du projet **capteur graphique**, nous avons développé une application Android avec **MIT App Inventor**. Cette application permet la communication sans fil avec un module **Arduino** via Bluetooth, afin de visualiser les données du capteur en temps réel.
 
-### Objectifs
+#### Objectifs
 
 - Établir une connexion Bluetooth entre le smartphone Android et le module Arduino.
 - Afficher la résistance du **potentiomètre numérique** ainsi que celle du **capteur graphique**.
 - Tracer une courbe en temps réel représentant l’évolution de la résistance du capteur.
 
-### Interface utilisateur
+#### Interface utilisateur
 
 - Le bouton **Bluetooth** permet de se connecter au module Arduino via Bluetooth.
 - Une fois connecté, le bouton change de couleur en **vert** et affiche l'état **Connected**.
@@ -111,7 +111,7 @@ Dans le cadre du banc de test du projet **capteur graphique**, nous avons dével
  
   ![Image](https://github.com/user-attachments/assets/0ffca166-5328-4210-a755-76f6cf1dd574)
 
-### Blocs MIT App Inventor
+#### Blocs MIT App Inventor
 
 L'application utilise des blocs pour :
 
@@ -124,11 +124,11 @@ Voici une image représentant les blocs utilisés dans le projet :
 
 ![Image](https://github.com/user-attachments/assets/ed322dd1-6f0d-4da5-89ca-ad9bb435ec90)
 
-### Réalisation Physique du Circuit
+### 4) Réalisation Physique du Circuit
 
 Le circuit final a été soudé et testé dans les laboratoires du département. Des tests ont confirmé la stabilité du signal et l’efficacité des différents modules. Les soudures ont été réalisées manuellement pour garantir une bonne qualité de connexion.
 
-### Banc de Test Expérimental
+### 5) Banc de Test Expérimental
 
 Le banc de test qui nous a permis de réaliser l'expérience a été developpé avec le logiciel **Fusion 360**. 
 Il est composé de :
