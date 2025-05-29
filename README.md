@@ -104,6 +104,7 @@ L’objectif est d’optimiser la compacité, de limiter les interférences et d
 
 ![Image](https://github.com/user-attachments/assets/7d89c180-d199-42cf-8f1e-8d37468880a9)
 
+![Image](https://github.com/user-attachments/assets/c64fc3c3-8669-43f4-a2bb-5f7fb6242ba6)
 ---
 
 ### Étape 4 : Visualisation 3D
