@@ -91,12 +91,38 @@ Le code Arduino doit permettre la réalisation des fonctions suivantes :
 
 ### Application Android avec MITApp Inventor
 
-L’application Android a été conçue via **MIT App Inventor**, offrant :
-- Une interface intuitive,
-- La visualisation en temps réel des valeurs de résistance,
-- Le contrôle du potentiomètre numérique à distance.
+Dans le cadre du banc de test du projet **capteur graphique**, nous avons développé une application Android avec **MIT App Inventor**. Cette application permet la communication sans fil avec un module **Arduino** via Bluetooth, afin de visualiser les données du capteur en temps réel.
 
-L’application utilise une commande spécifique (« read ») pour vider le tampon Bluetooth avant chaque lecture, assurant la fiabilité des données.
+### Objectifs
+
+- Établir une connexion Bluetooth entre le smartphone Android et le module Arduino.
+- Afficher la résistance du **potentiomètre numérique** ainsi que celle du **capteur graphique**.
+- Tracer une courbe en temps réel représentant l’évolution de la résistance du capteur.
+
+### Interface utilisateur
+
+- Le bouton **Bluetooth** permet de se connecter au module Arduino via Bluetooth.
+- Une fois connecté, le bouton change de couleur en **vert** et affiche l'état **Connected**.
+- Pour se déconnecter, il suffit d'appuyer sur le bouton **Kicad**.
+- Au centre de l'écran, un graphique affiche en temps réel la résistance du capteur graphique.
+- En bas de l'écran, deux valeurs sont affichées :
+  - La valeur de la résistance actuelle du **potentiomètre numérique**
+  - La valeur de la résistance instantanée du **capteur graphique**
+ 
+  ![Image](https://github.com/user-attachments/assets/0ffca166-5328-4210-a755-76f6cf1dd574)
+
+### Blocs MIT App Inventor
+
+L'application utilise des blocs pour :
+
+- Établir la connexion Bluetooth
+- Recevoir les données depuis l'Arduino via UART
+- Traiter les données reçues et les afficher dans un graphique
+- Mettre à jour l'interface en fonction de l'état de la connexion
+
+Voici une image représentant les blocs utilisés dans le projet :
+
+![Image](https://github.com/user-attachments/assets/ed322dd1-6f0d-4da5-89ca-ad9bb435ec90)
 
 ### Réalisation Physique du Circuit
 
