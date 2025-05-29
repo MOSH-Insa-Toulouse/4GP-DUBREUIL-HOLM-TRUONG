@@ -17,8 +17,12 @@ Ce répertoire présente l'ensemble des éléments nécessaire à la conception 
 L’objectif était de concevoir un dispositif de mesure de déformation utilisant un capteur innovant, low-tech, basé sur du graphite appliqué sur papier, selon le principe décrit dans l’article scientifique :  
 **"Pencil Drawn Strain Gauges and Chemiresistors on Paper"** (Cheng-Wei Lin, Zhibo Zhao, Jaemyung Kim & Jiaxing Huang). Ce capteur, d'une simplicité remarquable, est constitué d'un morceau de papier sur lequel du graphite est appliqué à l'aide d'un crayon à papier.
 
+![Image](https://github.com/user-attachments/assets/727cc681-f1a2-4a0d-8247-0b9f83917b50)
+
 Le principe de fonctionnement repose sur l'observation que la déformation du papier entraîne une variation du nombre de particules de graphite interconnectées. Cette modification de la structure granulaire du graphite se traduit par une variation de la résistance et de la conductance du capteur. En exploitant cette propriété, il devient possible de remonter à la déformation subie, à l'instar d'une jauge de contrainte classique.
+
 ![Image](https://github.com/user-attachments/assets/bc79245b-acaf-44ab-830e-e222ee2b5f1d)
+
 Le fonctionnement repose sur la variation de la conductivité électrique du graphite en fonction de la contrainte mécanique appliquée au support papier. Ce phénomène permet de mesurer la déformation avec une technologie simple, accessible et écologique.
 ## Matériel necessaire
 ### ***Software*** (Présenté dans l'ordre d'utilisation)
@@ -45,9 +49,9 @@ Le fonctionnement repose sur la variation de la conductivité électrique du gra
 Un montage à transimpédance a été conçu afin d'amplifier le faible courant produit par le capteur graphite. Ce montage utilise un amplificateur opérationnel de précision (LTC1050) pour convertir le courant en tension, compatible avec les entrées analogiques d’un Arduino UNO.  
 
 Trois filtres passe-bas ont été intégrés pour minimiser le bruit :
-- Entrée : filtre RC à 16 Hz pour réduire les perturbations en courant,
-- Boucle AOP : filtre actif à 1,6 Hz pour éliminer le bruit secteur (50 Hz),
-- Sortie : filtre à 1,6 kHz pour lisser le signal final.
+- Un filtre passe-bas passif (R1, C1) à l'entrée : filtre RC à 16 Hz pour réduire les perturbations en courant,
+- Un filtre passe-bas actif (R3, C4) couplé à l'AOP : filtre actif à 1,6 Hz pour éliminer le bruit secteur (50 Hz),
+- Un filtre passe-bas (R5, C2) à la sortie de l'AOP : filtre à 1,6 kHz pour lisser le signal final.
 
 Des simulations transitoires et fréquentielles ont validé l’amplification et l’efficacité de la filtration (atténuation > 70 dB à 50 Hz).
 
