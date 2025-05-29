@@ -180,6 +180,7 @@ Il est composé de :
 L'ensemble de ces pièces sont à retrouver dans le dossier "Banc de test".
 L'idée de ce banc de test est de couber le papier à l'aide du mobile qui sera actionner par le servo-moteur. Pour avoir un ensemble de mesure à réaliser le micro-contrôleur gère l'angle de la course imposé au moteur. Ainsi, on peut raisonnablement pensé que pour un même angle de course appliqué, le papier subira toujours la même déformation. 
 Les courbes de mesure à établir seront donc la varoiation de résistance suivant la course faite par le mobile
+![Image](https://github.com/user-attachments/assets/fdeb2f92-acbf-40aa-b921-e516e770c923)
 
 ---
 ## Contacts
