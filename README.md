@@ -184,7 +184,7 @@ Les courbes de mesure à établir seront donc la varoiation de résistance suiva
 
 
 Une fois le banc installé, il n'y a plus qu'à naviguer dans le menu affiché sur l'écran OLED à l'aide de l'encodeur rotatoire pour choisir la direction du mouvement et l'inclinaison. Une fois ces paramètres séléctionné par l'utilisateur, le resultat s'affiche dans le *Serial Monitor* ici Teleplot.
-![Image](https://github.com/MOSH-Insa-Toulouse/4GP-DUBREUIL-HOLM-TRUONG/issues/11#issue-3101398514)
+![Image](https://github.com/user-attachments/assets/39f9b89d-849c-4ee4-b824-051a5b427cc9)
 
 ---
 ## Contacts
