@@ -165,6 +165,8 @@ Voici une image représentant les blocs utilisés dans le projet :
 
 Le circuit final a été soudé et testé dans les laboratoires du département. Des tests ont confirmé la stabilité du signal et l’efficacité des différents modules. Les soudures ont été réalisées manuellement pour garantir une bonne qualité de connexion.
 
+![Image](https://github.com/user-attachments/assets/fd61f70b-806f-4120-856d-6a93f04570aa)
+
 ---
 ### 6) Banc de Test Expérimental
 
