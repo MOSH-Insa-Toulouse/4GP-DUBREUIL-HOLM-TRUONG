@@ -132,7 +132,7 @@ Dans le cadre du banc de test du projet **capteur graphique**, nous avons dével
 #### Objectifs
 
 - Établir une connexion Bluetooth entre le smartphone Android et le module Arduino.
-- Afficher la résistance du **potentiomètre numérique** ainsi que celle du **capteur graphique**.
+- Afficher la résistance du **potentiomètre numérique** ainsi que celle du **capteur graphite**.
 - Tracer une courbe en temps réel représentant l’évolution de la résistance du capteur.
 
 #### Interface utilisateur
@@ -143,7 +143,7 @@ Dans le cadre du banc de test du projet **capteur graphique**, nous avons dével
 - Au centre de l'écran, un graphique affiche en temps réel la résistance du capteur graphique.
 - En bas de l'écran, deux valeurs sont affichées :
   - La valeur de la résistance actuelle du **potentiomètre numérique**
-  - La valeur de la résistance instantanée du **capteur graphique**
+  - La valeur de la résistance instantanée du **capteur graphite**
  
   ![Image](https://github.com/user-attachments/assets/0ffca166-5328-4210-a755-76f6cf1dd574)
 
@@ -153,7 +153,7 @@ L'application utilise des blocs pour :
 
 - Établir la connexion Bluetooth
 - Recevoir les données depuis l'Arduino via UART
-- Traiter les données reçues et les afficher dans un graphique
+- Traiter les données reçues et les afficher dans un graphite
 - Mettre à jour l'interface en fonction de l'état de la connexion
 
 Voici une image représentant les blocs utilisés dans le projet :
@@ -183,4 +183,4 @@ Les courbes de mesure à établir seront donc la varoiation de résistance suiva
 
 [HOLM Anne-Marie](https://github.com/anemho)
 
-[TRUONG Nguyen Gia Khanh](https://github.com/ntruonginsatls)(ntruong@insa-toulouse.fr)
+[TRUONG Nguyen Gia Khanh](https://github.com/ntruonginsatls) (ntruong@insa-toulouse.fr)
