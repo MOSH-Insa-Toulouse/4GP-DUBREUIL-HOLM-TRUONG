@@ -7,10 +7,11 @@
    - [Hardware](#Hardware)
 - [III)Livrables](#Livrables)
    - [1) Simulation LtSpice](#Simulation-LtSpice)
-   - [2) Code Arduino](#Code-Arduino)
-   - [3) Application Android avec MITApp Inventor](#Application-Android-avec-MITApp-Inventor)
-   - [4) Réalisation Physique du Circuit](#Réalisation-Physique-du-Circuit)
-   - [5) Banc de Test Expérimental](#Banc-de-Test-Expérimental)
+   - [2) Conception PCB avec KiCad](#Conception-PCB-avec-KiCad)
+   - [3) Code Arduino](#Code-Arduino)
+   - [4) Application Android avec MITApp Inventor](#Application-Android-avec-MITApp-Inventor)
+   - [5) Réalisation Physique du Circuit](#Réalisation-Physique-du-Circuit)
+   - [6) Banc de Test Expérimental](#Banc-de-Test-Expérimental)
 
 ## I) Présentation
 Ce répertoire présente l'ensemble des éléments nécessaire à la conception d'un capteur de pression en graphite réalisé dans le cadre de l'UF I4GPMH21 : Du capteur au banc de test en open source hardware.
@@ -62,7 +63,7 @@ Des simulations transitoires et fréquentielles ont validé l’amplification et
 #### ***Schéma du montage***
 ![Image](https://github.com/user-attachments/assets/8ec56f1d-8405-40e8-8d74-eb53732aa1f6)
 
-### Conception PCB avec KiCad
+### 2) Conception PCB avec KiCad
 
 Le circuit imprimé a été entièrement conçu à l'aide du logiciel **KiCad**, incluant :
 - Schéma électrique complet,
@@ -81,7 +82,7 @@ Le circuit imprimé a été entièrement conçu à l'aide du logiciel **KiCad**,
 ![Image](https://github.com/user-attachments/assets/48660987-a96b-4d5e-b8db-5d6eb2de74c5)
 
 
-### 2) Code Arduino
+### 3) Code Arduino
 Le code Arduino doit permettre la réalisation des fonctions suivantes :
 1. Récupérer les données du capteur *Hand-made*
 1. Récupérer les données du capteur commercial
@@ -89,7 +90,7 @@ Le code Arduino doit permettre la réalisation des fonctions suivantes :
 1. Gérer l'affichage OLED
 1. Contrôler le servo-moteur
 
-### 3) Application Android avec MITApp Inventor
+### 4) Application Android avec MITApp Inventor
 
 Dans le cadre du banc de test du projet **capteur graphique**, nous avons développé une application Android avec **MIT App Inventor**. Cette application permet la communication sans fil avec un module **Arduino** via Bluetooth, afin de visualiser les données du capteur en temps réel.
 
@@ -124,11 +125,11 @@ Voici une image représentant les blocs utilisés dans le projet :
 
 ![Image](https://github.com/user-attachments/assets/ed322dd1-6f0d-4da5-89ca-ad9bb435ec90)
 
-### 4) Réalisation Physique du Circuit
+### 5) Réalisation Physique du Circuit
 
 Le circuit final a été soudé et testé dans les laboratoires du département. Des tests ont confirmé la stabilité du signal et l’efficacité des différents modules. Les soudures ont été réalisées manuellement pour garantir une bonne qualité de connexion.
 
-### 5) Banc de Test Expérimental
+### 6) Banc de Test Expérimental
 
 Le banc de test qui nous a permis de réaliser l'expérience a été developpé avec le logiciel **Fusion 360**. 
 Il est composé de :
