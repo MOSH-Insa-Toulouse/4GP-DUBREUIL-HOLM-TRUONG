@@ -1,4 +1,17 @@
 # 4GP-DUBREUIL-HOLM-TRUONG
+
+##SMOMAIRE
+- [Présentation](#Présentation)
+- [Matériel necessaire](#Matériel-necessaire)
+   - [Software]
+   - [Hardware]
+- [Livrables](#Livrables)
+   - [Simulation LtSpice](#Simulation-LtSpice)
+   - [Code Arduino](#Code-Arduino)
+   - [Application Android avec MITApp Inventor](#Application-Android-avec-MITApp-Inventor)
+   - [Réalisation Physique du Circuit](#Réalisation-Physique-du-Circuit)
+   - [Banc de Test Expérimental](#Banc-de-Test-Expérimental)
+
 ## Présentation
 Ce répertoire présente l'ensemble des éléments nécessaire à la conception d'un capteur de pression en graphite réalisé dans le cadre de l'UF I4GPMH21 : Du capteur au banc de test en open source hardware.
 L’objectif était de concevoir un dispositif de mesure de déformation utilisant un capteur innovant, low-tech, basé sur du graphite appliqué sur papier, selon le principe décrit dans l’article scientifique :  
@@ -88,11 +101,11 @@ Le circuit final a été soudé et testé dans les laboratoires du département.
 
 L’objectif est de calculer la variation relative de résistance ($\Delta R / R_0$) en fonction de la déformation ($\varepsilon = e / D$), où $e$ est l’épaisseur du papier et $D$ diamètre du demi-cercle.
 
-## Formule de calcul du déplacement Δx du curseur
+#### Formule de calcul du déplacement Δx du curseur
 \[
 \Delta x = L \cos(\alpha) + l \left( \sqrt{1 - \frac{L^2 \sin^2(\alpha)}{l^2}} - \sqrt{1 - \frac{L^2}{l^2}} \right)
 \]
-## ## Formule de calcul du rayon R0 du capteur lorsqu'il est plié à l'angle de rotation alpha
+#### Formule de calcul du rayon R0 du capteur lorsqu'il est plié à l'angle de rotation alpha
 \[
 R_0(\alpha) = \frac{l_0^2 + \left[ L \cos(\alpha) + l \left( \sqrt{1 - \frac{L^2 \sin^2(\alpha)}{l^2}} - \sqrt{1 - \frac{L^2}{l^2}} \right) \right]^2}{4 \left[ L \cos(\alpha) + l \left( \sqrt{1 - \frac{L^2 \sin^2(\alpha)}{l^2}} - \sqrt{1 - \frac{L^2}{l^2}} \right) \right]}
 \]
