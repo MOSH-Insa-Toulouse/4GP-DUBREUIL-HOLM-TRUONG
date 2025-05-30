@@ -201,8 +201,7 @@ Il est composé de :
 L'ensemble de ces pièces sont à retrouver dans le dossier "Banc de test".
 L'idée de ce banc de test est de couber le papier à l'aide du mobile qui sera actionner par le servo-moteur. Pour avoir un ensemble de mesure à réaliser le micro-contrôleur gère l'angle de la course imposé au moteur. Ainsi, on peut raisonnablement pensé que pour un même angle de course appliqué, le papier subira toujours la même déformation. 
 Les courbes de mesure à établir seront donc la variation de résistance suivant la course faite par le mobile
-![Image](https://github.com/user-attachments/assets/1cd56765-ca9d-4616-94d3-b87e711a5b25)
-
+![Image](https://github.com/user-attachments/assets/6a50de7c-15be-4b5e-a89b-a8f4f8405a7d)
 
 Une fois le banc installé, il n'y a plus qu'à naviguer dans le menu affiché sur l'écran OLED à l'aide de l'encodeur rotatoire pour choisir la direction du mouvement et l'inclinaison. Une fois ces paramètres séléctionné par l'utilisateur, le resultat s'affiche dans le *Serial Monitor* ici Teleplot.
 ![Image](https://github.com/user-attachments/assets/39f9b89d-849c-4ee4-b824-051a5b427cc9)
