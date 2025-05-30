@@ -215,7 +215,7 @@ Une fois le banc installé, il n'y a plus qu'à naviguer dans le menu affiché s
 ---
 ## Gestion du Projet
 ### 1) Répartition du travail
-Au cours de ce projet, il a été necessaire de se répartir le travail pour couvrir le maximum de points important.
+Au cours de ce projet, il a été necessaire de se répartir le travail pour couvrir le maximum de points important. En cas de questions pour les futurs lecteurs ne pas hésiter à contacter les personnes sur leur différents points.
 Ainsi, les tâches ont été réparties comme suit : 
 
 - DUBREUIL Pierrick
@@ -244,7 +244,7 @@ Ainsi, les tâches ont été réparties comme suit :
 
 ---
 ### 2) Contacts
-[DUBREUIL Pierrick](https://github.com/pierrickdubreuil17)
+[DUBREUIL Pierrick](https://github.com/pierrickdubreuil17)(pdubreuil@insa-toulouse.fr)
 
 [HOLM Anne-Marie](https://github.com/anemho)
 
