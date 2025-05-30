@@ -12,6 +12,10 @@
    - [4) Application Android avec MITApp Inventor](#Application-Android-avec-MITApp-Inventor)
    - [5) Réalisation Physique du Circuit](#Réalisation-Physique-du-Circuit)
    - [6) Banc de Test Expérimental](#Banc-de-Test-Expérimental)
+- [IV)Gestion de projet](#gestion-projet)
+   - [1)Répartition du travail](#repartition-travail)
+   - [2) Contacts](#contacts)
+
 
 ## I) Présentation
 Ce répertoire présente l'ensemble des éléments nécessaire à la conception d'un capteur de pression en graphite réalisé dans le cadre de l'UF I4GPMH21 : Du capteur au banc de test en open source hardware.
@@ -209,7 +213,8 @@ Une fois le banc installé, il n'y a plus qu'à naviguer dans le menu affiché s
 ![Image](https://github.com/user-attachments/assets/39f9b89d-849c-4ee4-b824-051a5b427cc9)
 
 ---
-## Répartition du travail
+## Gestion du Projet
+### 1) Répartition du travail
 Au cours de ce projet, il a été necessaire de se répartir le travail pour couvrir le maximum de points important.
 Ainsi, les tâches ont été réparties comme suit : 
 
@@ -237,7 +242,7 @@ Ainsi, les tâches ont été réparties comme suit :
       - Conception de l'application
 
 ---
-## Contacts
+### 2) Contacts
 [DUBREUIL Pierrick](https://github.com/pierrickdubreuil17)
 
 [HOLM Anne-Marie](https://github.com/anemho)
