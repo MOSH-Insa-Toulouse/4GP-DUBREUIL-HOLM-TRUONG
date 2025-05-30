@@ -217,7 +217,9 @@ Ainsi, les tâches ont été réparties comme suit :
    - KiCad : 
       - Réalisation du plans *schematic*
       - PCB : Correction d'empreintes + Routage des pistes
-   - Banc de test 3D : réalisation et impression totale du banc
+   - Banc de test 3D : 
+      - Conception des différents éléments du banc sur Fusion 360
+      - Impression des éléments du banc
    - Code Arduino : 
       - Construction du menu global
       - Gestion des commandes du servo-moteur
