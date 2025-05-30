@@ -35,13 +35,13 @@ Le fonctionnement repose sur la variation de la conductivité électrique du gra
 1. Micro-contrôleur Arduino UNO
 1. Modules 
     * Bluetooth HC-05
-    * Capteur de pression en graphite
-    * Capteur de pression du commerce
+    * Capteur de déformation en graphite
+    * Capteur de déformation du commerce
     * Écran OLED
     * Encodeur Rotatoire
     * Potentiomètre digital
     * Servo-Moteur
-1. Banc de test
+1. Banc de test réalisé à l'imprimante 3D
 
 ## III) Livrables
 ### 1) Simulation LtSpice
@@ -73,18 +73,18 @@ Le circuit est conçu pour intégrer et connecter plusieurs composants essentiel
 
 - Amplificateur opérationnel **LT1050** (amplification analogique du signal capteur)
 - **Servomoteur** 
-- **Potentiomètre numérique** (ajustement dynamique de gain ou tension de référence)
-- **Encodeur rotatif**
+- **Potentiomètre numérique** (ajustement dynamique de gain)
+- **Encodeur rotatoire**
 - **Écran OLED**
 - **Module Bluetooth HC-05** (communication sans fil avec une application mobile)
-- Deux broches dédiées au **capteur graphique**
+- Deux broches dédiées au **capteur graphène**
 
-L’ensemble des connexions logiques et électriques est établi dans le schéma pour s'assurer de la compatibilité avec l’Arduino.
+L’ensemble des connexions logiques et électriques est établi dans le schéma du PCB sur KiCad pour s'assurer de la compatibilité avec l’Arduino.
 
 
 ### Étape 2 : Simulation du schéma électrique
 
-La conception a débuté par la création d’un schéma électrique simulé sous **LTspice**. Cette simulation permet de valider le comportement du circuit d’amplification, notamment autour de l’amplificateur opérationnel **LT1050**, qui joue un rôle essentiel dans l’amplification du signal analogique issu du capteur graphite.
+La conception a débuté par la création d’un schéma électrique simulé sous **LTspice**. Cette simulation permet de valider le comportement du circuit d’amplification, notamment autour de l’amplificateur opérationnel **LT 1050**, qui joue un rôle essentiel dans l’amplification du signal analogique issu du capteur graphite.
 
 Une fois le schéma validé, il est reproduit dans **KiCad** afin de préparer la conception physique du circuit.
 
@@ -92,7 +92,7 @@ Une fois le schéma validé, il est reproduit dans **KiCad** afin de préparer l
 
 ![Image](https://github.com/user-attachments/assets/41834f51-993d-49a6-9831-d555f277b064)
 
-
+Ici sont présenté les différents éléments qui composeront le *shield* de notre projet ainsi que l'assignation des différentes connexions. On y retrouve en haut à droite l'ensemble des pins de connexion de l'arduino, à gauche, le schéma de l'amplificateur ainsi que la connexion du capteur graphène. Enfin, en bas, on retrouve la schématisation des différents modules à intégrer.
 
 ### Étape 3 : Routage PCB dans KiCad
 
@@ -148,12 +148,12 @@ Une fois l'angle selectionné, le mouvement du servo-moteur se déclenche et la 
 ---
 ### 4) Application Android avec MITApp Inventor
 
-Dans le cadre du banc de test du projet **capteur graphique**, nous avons développé une application Android avec **MIT App Inventor**. Cette application permet la communication sans fil avec un module **Arduino** via Bluetooth, afin de visualiser les données du capteur en temps réel.
+Nous avons développé une application Android avec **MIT App Inventor**. Cette application doit permettre la communication sans fil avec le module Bluetooth présent sur le *shield*, afin de visualiser les données du capteur en temps réel sur un téléphone android par exemple.
 
 #### Objectifs
 
 - Établir une connexion Bluetooth entre le smartphone Android et le module Arduino.
-- Afficher la résistance du **potentiomètre numérique** ainsi que celle du **capteur graphite**.
+- Afficher la résistance du **potentiomètre digital** ainsi que celle du **capteur graphène**.
 - Tracer une courbe en temps réel représentant l’évolution de la résistance du capteur.
 
 #### Interface utilisateur
@@ -161,10 +161,10 @@ Dans le cadre du banc de test du projet **capteur graphique**, nous avons dével
 - Le bouton **Bluetooth** permet de se connecter au module Arduino via Bluetooth.
 - Une fois connecté, le bouton change de couleur en **vert** et affiche l'état **Connected**.
 - Pour se déconnecter, il suffit d'appuyer sur le bouton **Kicad**.
-- Au centre de l'écran, un graphique affiche en temps réel la résistance du capteur graphique.
+- Au centre de l'écran, un graphique affiche en temps réel la résistance mesurée du capteur graphène.
 - En bas de l'écran, deux valeurs sont affichées :
-  - La valeur de la résistance actuelle du **potentiomètre numérique**
-  - La valeur de la résistance instantanée du **capteur graphite**
+  - La valeur de la résistance du **potentiomètre digital** séléctionnée
+  - La valeur de la résistance instantanée du **capteur graphène**
  
   ![Image](https://github.com/user-attachments/assets/0ffca166-5328-4210-a755-76f6cf1dd574)
 
@@ -174,7 +174,7 @@ L'application utilise des blocs pour :
 
 - Établir la connexion Bluetooth
 - Recevoir les données depuis l'Arduino via UART
-- Traiter les données reçues et les afficher dans un graphite
+- Traiter les données reçues et les afficher dans un graphique
 - Mettre à jour l'interface en fonction de l'état de la connexion
 
 Voici une image représentant les blocs utilisés dans le projet :
@@ -198,13 +198,41 @@ Il est composé de :
 1. Un mobile 
 1. Un support pour le capteur graphène.
 
-L'ensemble de ces pièces sont à retrouver dans le dossier "Banc de test".
-L'idée de ce banc de test est de couber le papier à l'aide du mobile qui sera actionner par le servo-moteur. Pour avoir un ensemble de mesure à réaliser le micro-contrôleur gère l'angle de la course imposé au moteur. Ainsi, on peut raisonnablement pensé que pour un même angle de course appliqué, le papier subira toujours la même déformation. 
+L'ensemble de ces pièces sont à retrouver dans le dossier "Banc de test" ainsi que la vue globale présentée plus bas.
+
+L'idée de ce banc de test est de courber le papier à l'aide du mobile qui sera actionner par le servo-moteur. Pour avoir un ensemble de mesure à réaliser le micro-contrôleur gère l'angle de la course imposé au moteur. Ainsi, on peut raisonnablement penser que pour un même angle de course appliqué, le capteur subira toujours la même déformation. 
+
 Les courbes de mesure à établir seront donc la variation de résistance suivant la course faite par le mobile
 ![Image](https://github.com/user-attachments/assets/6a50de7c-15be-4b5e-a89b-a8f4f8405a7d)
 
 Une fois le banc installé, il n'y a plus qu'à naviguer dans le menu affiché sur l'écran OLED à l'aide de l'encodeur rotatoire pour choisir la direction du mouvement et l'inclinaison. Une fois ces paramètres séléctionné par l'utilisateur, le resultat s'affiche dans le *Serial Monitor* ici Teleplot.
 ![Image](https://github.com/user-attachments/assets/39f9b89d-849c-4ee4-b824-051a5b427cc9)
+
+---
+## Répartition du travail
+Au cours de ce projet, il a été necessaire de se répartir le travail pour couvrir le maximum de points important.
+Ainsi, les tâches ont été réparties comme suit : 
+
+- DUBREUIL Pierrick
+   - KiCad : 
+      - Réalisation du plans *schematic*
+      - PCB : Correction d'empreintes + Routage des pistes
+   - Banc de test 3D : réalisation et impression totale du banc
+   - Code Arduino : 
+      - Construction du menu global
+      - Gestion des commandes du servo-moteur
+      - Acquisition des données du capteur graphène et affichage
+- HOLM Ane-Marie
+   - Développement du *front-end* de l'application Android
+   - Rédaction de la *datasheet* du capteur
+- TRUONG Nguyen 
+   - KiCad :
+      - Création d'empreintes PCB
+      - Correction routage des pistes
+   - Code Arduino
+      - Gestion de la résistance du potentiomètre digital
+   - MITAPP :
+      - Conception de l'application
 
 ---
 ## Contacts
