@@ -236,6 +236,7 @@ Ainsi, les tâches ont été réparties comme suit :
    - KiCad :
       - Création d'empreintes PCB
       - Correction routage des pistes
+      - Rendu 3D final
    - Code Arduino
       - Gestion de la résistance du potentiomètre digital
    - MITAPP :
