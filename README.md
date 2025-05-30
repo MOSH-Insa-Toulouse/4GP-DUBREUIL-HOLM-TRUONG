@@ -104,7 +104,7 @@ L’objectif est d’optimiser la compacité, de limiter les interférences et d
 
 ![Image](https://github.com/user-attachments/assets/7d89c180-d199-42cf-8f1e-8d37468880a9)
 
-
+![Image](https://github.com/user-attachments/assets/c64fc3c3-8669-43f4-a2bb-5f7fb6242ba6)
 ---
 
 ### Étape 4 : Visualisation 3D
@@ -118,11 +118,30 @@ Une fois le routage terminé, **KiCad** permet de générer un **modèle 3D** r�
 ---
 ### 3) Code Arduino
 Le code Arduino doit permettre la réalisation des fonctions suivantes :
-1. Récupérer les données du capteur *Hand-made*
-1. Récupérer les données du capteur commercial
-1. Gérer la communication Bluetooth
-1. Gérer l'affichage OLED
-1. Contrôler le servo-moteur
+1. Récupérer les données du capteur graphène fait main
+1. Naviguer dans un menu avec l'encodeur rotatoire et afficher sur l'écran OLED.
+1. Gérer les valeurs de résistance du potentiomètre digital
+1. Définir l'action du servo-moteur
+
+Pour accomplir toutes ces actions, l'ensemble des fonctionnalités est géré à partir d'un menu à plusieurs niveau construit sur le modèle d'une machine à état.
+Ainsi, dans le code deux fonctions sont construites pour gérer les mouvements de l'encodeur rotatoire et la gestion des menus.
+L'arborescence finale du menu est construite comme suit : 
+- Resistance R2
+- Servo-moteur
+   - Pousser
+      - Angle 30
+      - Angle 45
+      - Angle 60
+      - Angle 90
+      - Retour
+   - Tirer
+      - Angle 30
+      - Angle 45
+      - Angle 60
+      - Angle 90
+      - Retour
+   - Retour
+Une fois l'angle selectionné, le mouvement du servo-moteur se déclenche et la mesure est réalisée (voir partie banc de test) 
 
 ---
 ### 4) Application Android avec MITApp Inventor
@@ -164,10 +183,6 @@ Voici une image représentant les blocs utilisés dans le projet :
 ### 5) Réalisation Physique du Circuit
 
 Le circuit final a été soudé et testé dans les laboratoires du département. Des tests ont confirmé la stabilité du signal et l’efficacité des différents modules. Les soudures ont été réalisées manuellement pour garantir une bonne qualité de connexion.
-
-![Image](https://github.com/user-attachments/assets/c64fc3c3-8669-43f4-a2bb-5f7fb6242ba6)
-
-![Image](https://github.com/user-attachments/assets/fd61f70b-806f-4120-856d-6a93f04570aa)
 
 ---
 ### 6) Banc de Test Expérimental
